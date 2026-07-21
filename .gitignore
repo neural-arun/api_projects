@@ -34,3 +34,6 @@ Thumbs.db
 
 # Git (don't push nested .git dirs)
 .git/
+
+# opencode session files
+.opencode/

@@ -1,160 +1,173 @@
-# FastAPI for Healthcare + Medical Education
-
-A progressive 10-module curriculum: **Learn → Build → Break → Refactor → Test → Deploy → Next**
-
----
-
-## Progress
-
-| # | Module | Code | Notes | Status |
-|---|--------|------|-------|--------|
-| 1 | Patient Task Management | ✅ | ✅ | **Complete** |
-| 2 | Clinical Notes Backend | ❌ | ✅ | Topics studied |
-| 3 | Medical Education Auth | ❌ | ✅ | Topics studied |
-| 4 | Medical Content Upload | ❌ | ✅ | Topics studied |
-| 5 | Healthcare Appointment Backend | ❌ | ✅ | Topics studied |
-| 6 | Medical Tutor Chat | ❌ | ✅ | Topics studied |
-| 7 | Medical Document Pipeline | ❌ | ✅ | Topics studied |
-| 8 | Medical Knowledge RAG | ❌ | ✅ | Topics studied |
-| 9 | Multi-Tenant Healthcare SaaS | ❌ | ✅ | Topics studied |
-| 10 | AI Clinical Operations Platform | ❌ | ✅ | Topics studied |
-
----
-
-## Build 1 — Patient Task Management API
-
-- [x] Medication reminders CRUD
-- [x] Daily tasks CRUD
-- [x] Completion tracking
-- [x] GET, POST, PUT, PATCH, DELETE
-- [x] Path parameters, Query parameters
-- [x] Pydantic models, Validation
-- [x] Response models, Status codes
-- [x] HTTPException
-
-## Build 2 — Clinical Notes Backend
-
-- [ ] Create patient
-- [ ] Create/Edit note
-- [ ] Search notes
-- [ ] Visit history
-- [ ] PostgreSQL + SQLAlchemy
-- [ ] Alembic migrations
-- [ ] Service injection with Depends()
-- [ ] Project structure (api/, models/, schemas/, db/)
-
-## Build 3 — Medical Education Auth Platform
-
-- [ ] Register (student, instructor, admin)
-- [ ] Login
-- [ ] Role-based permissions
-- [ ] Protected routes
-- [ ] JWT — access + refresh tokens
-- [ ] OAuth2 flow
-- [ ] Password hashing (bcrypt)
-- [ ] RBAC
-
-## Build 4 — Medical Content Upload API
-
-- [ ] Upload PDF, slides, images
-- [ ] Metadata storage
-- [ ] Preview endpoint
-- [ ] Background processing
-- [ ] File upload with FastAPI
-- [ ] StreamingResponse
-- [ ] async vs sync routes
-- [ ] BackgroundTasks
-
-## Build 5 — Healthcare Appointment Backend
-
-- [ ] Patients CRUD
-- [ ] Doctors CRUD
-- [ ] Time slots management
-- [ ] Appointment booking
-- [ ] Visit history
-- [ ] Production project structure
-- [ ] Structured logging
-- [ ] pytest + TestClient
-- [ ] Service layer pattern
-- [ ] Transactions for booking logic
-
-## Build 6 — Medical Tutor Chat Backend
-
-- [ ] Chat endpoint
-- [ ] Streaming responses (SSE)
-- [ ] Session storage
-- [ ] Message history
-- [ ] WebSockets
-- [ ] Server-Sent Events (SSE)
-- [ ] StreamingResponse
-- [ ] Async scaling
-
-## Build 7 — Medical Document Processing Pipeline
-
-- [ ] Upload endpoint → queue
-- [ ] Background worker processes document
-- [ ] Extract text/structured data
-- [ ] Store result
-- [ ] Celery — tasks, workers, queues
-- [ ] Redis — broker, result backend
-- [ ] Caching with Redis
-- [ ] Rate limiting
-
-## Build 8 — Medical Knowledge RAG Backend
-
-- [ ] Upload document
-- [ ] Chunk text
-- [ ] Generate embeddings
-- [ ] Store in vector DB
-- [ ] Retrieve relevant chunks
-- [ ] Generate answer with LLM
-- [ ] RAG architecture
-- [ ] Service layer, modular monolith
-- [ ] Streaming responses
-- [ ] API keys, Rate limiting
-
-## Build 9 — Multi-Tenant Healthcare SaaS
-
-- [ ] Organization isolation
-- [ ] Tenant-specific permissions
-- [ ] Tenant config/customization
-- [ ] Billing-ready structure
-- [ ] Docker + Docker Compose
-- [ ] VPS setup, Nginx reverse proxy
-- [ ] GitHub Actions CI/CD
-
-## Build 10 — AI Clinical Operations Platform
-
-- [ ] Patient intake endpoint
-- [ ] AI processing (triage, education assistant, document workflows)
-- [ ] Human review queue
-- [ ] Action/outcome tracking
-- [ ] Metrics (Prometheus)
-- [ ] Tracing, Monitoring (Grafana)
-- [ ] Event-driven architecture
-
----
-
-## Progression Map
 
 ```
-Patient Tasks (1)
-      ↓
-Clinical Notes (2)
-      ↓
-Medical Education Auth (3)
-      ↓
-Medical Content Upload (4)
-      ↓
-Appointment Backend (5)
-      ↓
-Medical Tutor Chat (6)
-      ↓
-Document Pipeline (7)
-      ↓
-Medical Knowledge RAG (8)
-      ↓
-Multi-Tenant Healthcare SaaS (9)
-      ↓
-AI Clinical Operations Platform (10)
+
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║            FastAPI for Healthcare + Medical Education           ║
+  ║         10 Progressive Builds — From CRUD to AI Systems         ║
+  ╚══════════════════════════════════════════════════════════════════╝
+
 ```
+
+## Why This Exists
+
+I build AI systems for healthcare and medical education — production-ready, not
+just demos. My focus isn't random. I spent years inside the NEET ecosystem as
+a student and saw the real problems firsthand: fragmented information, unclear
+guidance, wasted time. That experience shapes everything I build.
+
+This repo is a **progressive curriculum**: 10 projects that compound from a
+basic task API into a complete AI clinical operations platform.
+
+## The Philosophy
+
+```
+Learn → Build → Break → Refactor → Test → Deploy → Next
+```
+
+No chapters. No lectures. Each build teaches exactly what you need for the
+next one. After every build, ask:
+
+> 1. Where would this **break** in production?
+> 2. How would I **extend** this for a real client?
+> 3. What did I **not understand** that I glossed over?
+
+If you can't answer them, you moved too fast.
+
+## The Compounding Path
+
+```
+                          ┌──────────────────────────┐
+                          │  AI Clinical Operations  │── Build 10
+                          │     (Capstone)           │
+                          └──────────┬───────────────┘
+                                     │
+                          ┌──────────▼───────────────┐
+                          │  Multi-Tenant SaaS       │── Build 9
+                          │  (Deployment + Scale)    │
+                          └──────────┬───────────────┘
+                                     │
+                          ┌──────────▼───────────────┐
+                          │  Medical Knowledge RAG   │── Build 8
+                          │  (Retrieval + LLM)       │
+                          └──────────┬───────────────┘
+                                     │
+                          ┌──────────▼───────────────┐
+                          │  Document Pipeline       │── Build 7
+                          │  (Queues + Workers)      │
+                          └──────────┬───────────────┘
+                                     │
+                          ┌──────────▼───────────────┐
+                          │  Medical Tutor Chat      │── Build 6
+                          │  (WebSockets + Streaming)│
+                          └──────────┬───────────────┘
+                                     │
+              ┌──────────────────────┼──────────────────────┐
+              │                      │                      │
+  ┌───────────▼────────┐  ┌──────────▼────────┐  ┌─────────▼──────────┐
+  │ Content Upload     │  │ Appointment       │  │ Medical Auth       │
+  │ (Files + Async)    │──│ (Services + Test) │──│ (JWT + RBAC)       │
+  │ Build 4            │  │ Build 5           │  │ Build 3            │
+  └────────────────────┘  └───────────────────┘  └────────────────────┘
+              │                      │                      │
+              └──────────────────────┼──────────────────────┘
+                                     │
+                          ┌──────────▼───────────────┐
+                          │  Clinical Notes Backend  │── Build 2
+                          │  (Database + ORM)        │
+                          └──────────┬───────────────┘
+                                     │
+                          ┌──────────▼───────────────┐
+                          │  Patient Task API        │── Build 1
+                          │  (FastAPI Fundamentals)  │
+                          └──────────────────────────┘
+```
+
+## Builds Overview
+
+| # | Build | What You Learn | Status |
+|---|-------|---------------|--------|
+| 1 | **Patient Task Management API** | Routing, Pydantic, CRUD, validation, errors | ✅ Code + Notes |
+| 2 | **Clinical Notes Backend** | PostgreSQL, SQLAlchemy, Alembic, DI | ✅ Notes |
+| 3 | **Medical Education Auth Platform** | JWT, OAuth2, password hashing, RBAC, middleware | ✅ Notes |
+| 4 | **Medical Content Upload API** | File uploads, async routes, BackgroundTasks, streaming | ✅ Notes |
+| 5 | **Healthcare Appointment Backend** | Project structure, service layer, logging, pytest | ✅ Notes |
+| 6 | **Medical Tutor Chat Backend** | WebSockets, SSE, streaming responses, concurrency | ✅ Notes |
+| 7 | **Medical Document Processing Pipeline** | Celery, Redis, queues, caching, rate limiting | ✅ Notes |
+| 8 | **Medical Knowledge RAG Backend** | RAG, embeddings, vector stores, chunking, API security | ✅ Notes |
+| 9 | **Multi-Tenant Healthcare SaaS** | Multi-tenancy, Docker, CI/CD, deployment | ✅ Notes |
+| 10 | **AI Clinical Operations Platform** | Observability, event-driven architecture, agents | ✅ Notes |
+
+## Each Build Contains
+
+```
+📁 build_nnn_project_name/
+  ├── 📁 notes/             # System-level concept notes
+  │   ├── 00-index.md       # What you'll learn
+  │   ├── 01-concept.md     # Progressive concepts
+  │   ├── ...
+  │   └── quiz.md           # Test your understanding
+  └── 📁 src/               # Code (when implemented)
+```
+
+## The Knowledge Graph
+
+Instead of isolated topics, this curriculum builds a **compound understanding**:
+
+```
+Build  1 → HTTP, JSON, validation
+Build  2 → Persistence, relationships, project structure
+Build  3 → Identity, security, access control
+Build  4 → I/O, async, background processing
+Build  5 → Architecture, testing, production patterns
+Build  6 → Real-time, streaming, LLM-ready patterns
+Build  7 → Async processing at scale, queues
+Build  8 → Search, retrieval, AI augmentation
+Build  9 → Multi-tenancy, deployment, operations
+Build 10 → Systems thinking, observability, AI agents
+```
+
+## Getting Started
+
+```bash
+# Read the notes in order
+cd 01_manage_patient_task/notes/
+cat 00-index.md   # Start here
+
+# Study at your own pace
+# Code when you're ready to build
+# Break, refactor, then move on
+```
+
+## Complete Study Notes
+
+All 10 builds combined into a single printable document:
+
+📄 [`fast_api_projects_notes.md`](./fast_api_projects_notes.md)
+— 360 KB, ~150–200 printed pages. All 90 notes files in one file. Ready for
+PDF conversion.
+
+```bash
+# Convert to PDF (requires pandoc + weasyprint)
+pandoc fast_api_projects_notes.md -o fast_api_projects_notes.pdf \
+  --pdf-engine=weasyprint \
+  -V geometry:margin=1in \
+  -V fontsize=10pt
+```
+
+---
+
+## Connect
+
+Built by **Neural Arun** — building AI systems for healthcare and medical
+education.
+
+```
+📩  neural.arun.dev@gmail.com
+🔗  github.com/neural-arun
+𝕏   x.com/Neural_Arun
+⌾   instagram.com/neural.arun
+```
+
+---
+
+*This is a living repository. Builds get code as concepts solidify.*

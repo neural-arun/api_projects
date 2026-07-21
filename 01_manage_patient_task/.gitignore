@@ -1,0 +1,33 @@
+# Virtual env
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Testing
+.pytest_cache/
+
+# Build
+dist/
+build/
+
+# Type checking
+.mypy_cache/
+
+# Jupyter
+.ipynb_checkpoints/

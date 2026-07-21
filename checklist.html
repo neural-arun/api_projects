@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 Builds · HealthTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #EDF2F7;
+      background: #05060A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== ANIMATED BG ===== */
+    .bg {
+      position: fixed;
+      inset: -50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 20s ease-in-out infinite alternate;
+    }
+
+    .bg-orb:nth-child(1) {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #6C2BD9, transparent 70%);
+      top: 10%; left: 5%;
+      animation-duration: 25s;
+    }
+
+    .bg-orb:nth-child(2) {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #00D2FF, transparent 70%);
+      bottom: 10%; right: 10%;
+      animation-duration: 20s;
+      animation-delay: -5s;
+    }
+
+    .bg-orb:nth-child(3) {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #FF0080, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation-duration: 30s;
+      animation-delay: -10s;
+      opacity: 0.25;
+    }
+
+    .bg-orb:nth-child(4) {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, #FFD700, transparent 70%);
+      bottom: 30%; left: 20%;
+      animation-duration: 22s;
+      animation-delay: -3s;
+      opacity: 0.2;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(40px, -30px) scale(1.05); }
+      66% { transform: translate(-20px, 40px) scale(0.95); }
+      100% { transform: translate(30px, -20px) scale(1.02); }
+    }
+
+    /* subtle grain overlay */
+    .bg-grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1300px;
+      height: 100vh;
+      padding: 1.8rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== HEADLINE ===== */
+    .headline {
+      text-align: center;
+      flex-shrink: 0;
+      padding: 1rem 0 0.4rem;
+    }
+
+    .headline h2 {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #00D2FF 0%, #FF0080 50%, #FFD700 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+    }
+
+    .headline .sub {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+    }
+
+    /* ===== PROGRESS ===== */
+    .progress-section {
+      flex-shrink: 0;
+      padding: 0.5rem 0 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .progress-section .num {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.4);
+      white-space: nowrap;
+    }
+
+    .progress-section .num span {
+      background: linear-gradient(90deg, #00D2FF, #FF0080);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .progress-track-wrap {
+      flex: 1;
+      position: relative;
+      height: 6px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00D2FF, #FF0080, #FFD700);
+      border-radius: 6px;
+      transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      width: 0%;
+      box-shadow: 0 0 30px rgba(0,210,255,0.4), 0 0 60px rgba(255,0,128,0.15);
+    }
+
+    .progress-section .status {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.2);
+      white-space: nowrap;
+      min-width: 110px;
+      text-align: right;
+    }
+
+    /* ===== GRID ===== */
+    .grid-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+      padding: 0.5rem 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      width: 100%;
+    }
+
+    /* ===== FOLDER ===== */
+    .folder {
+      position: relative;
+      border-radius: 20px;
+      padding: 1.2rem 0.6rem 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .folder:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.04);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    /* vibrant thick border */
+    .folder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 40%, transparent 75%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      transition: all 0.5s ease;
+      opacity: 0.5;
+    }
+
+    .folder:hover::before {
+      opacity: 1;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent) 50%, rgba(255,255,255,0.2) 85%);
+    }
+
+    .folder.completed::before {
+      opacity: 1;
+      padding: 2.5px;
+      background: linear-gradient(135deg, var(--accent), var(--accent));
+      box-shadow:
+        0 0 30px color-mix(in srgb, var(--accent) 25%, transparent),
+        0 0 80px color-mix(in srgb, var(--accent) 8%, transparent),
+        inset 0 0 40px color-mix(in srgb, var(--accent) 4%, transparent);
+    }
+
+    .folder.completed:hover::before {
+      box-shadow:
+        0 0 50px color-mix(in srgb, var(--accent) 40%, transparent),
+        0 0 100px color-mix(in srgb, var(--accent) 12%, transparent),
+        inset 0 0 50px color-mix(in srgb, var(--accent) 6%, transparent);
+    }
+
+    /* icon */
+    .folder-icon {
+      width: 64px;
+      height: 47px;
+      position: relative;
+      flex-shrink: 0;
+      margin-bottom: 0.4rem;
+    }
+
+    .folder-icon svg { width: 100%; height: 100%; display: block; }
+
+    /* checkmark button */
+    .folder-check {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(20,30,50,0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 2px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 3;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+
+    .folder-check:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px color-mix(in srgb, var(--accent) 35%, transparent);
+      transform: scale(1.1);
+    }
+
+    .folder-check.checked {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow:
+        0 0 30px color-mix(in srgb, var(--accent) 45%, transparent),
+        0 0 70px color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+
+    .folder-check.checked:hover {
+      box-shadow:
+        0 0 45px color-mix(in srgb, var(--accent) 65%, transparent),
+        0 0 90px color-mix(in srgb, var(--accent) 25%, transparent);
+      transform: scale(1.12);
+    }
+
+    .folder-check svg { width: 17px; height: 17px; color: #fff; display: none; }
+    .folder-check.checked svg { display: block; }
+
+    .folder-number {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 0.55rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.05rem;
+    }
+
+    .folder-title {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.25;
+      max-width: 100%;
+      transition: all 0.3s;
+    }
+
+    .folder.completed .folder-title {
+      background: linear-gradient(90deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .folder-done-label {
+      margin-top: 0.3rem;
+      font-size: 0.58rem;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 0.06em;
+    }
+
+    .folder.completed .folder-done-label {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: rgba(12, 18, 34, 0.9);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 24px;
+      max-width: 520px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 1.8rem;
+      transform: scale(0.92) translateY(24px);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+      box-shadow: 0 0 80px rgba(0,0,0,0.5);
+    }
+
+    .modal-overlay.active .modal { transform: scale(1) translateY(0); }
+
+    .modal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; }
+    .modal-header .modal-num { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 600; font-size: 0.65rem; color: rgba(255,255,255,0.3); letter-spacing: 0.08em; }
+    .modal-header h2 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; font-size: 1.15rem; color: #fff; margin-top: 0.1rem; }
+
+    .modal-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.06); background: transparent;
+      color: rgba(255,255,255,0.3); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover { border-color: rgba(239,68,68,0.4); color: #ef4444; background: rgba(239,68,68,0.08); }
+    .modal-close svg { width: 16px; height: 16px; }
+
+    .modal-problem {
+      font-size: 0.8rem; color: rgba(255,255,255,0.4);
+      padding: 0.6rem 0.9rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 10px; margin-bottom: 0.4rem;
+    }
+
+    .modal-sell { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
+    .modal-sell strong { color: #00D2FF; }
+
+    .modal h4 {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-weight: 600; font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.2); margin-bottom: 0.4rem;
+    }
+
+    .modal-topics { display: flex; flex-direction: column; gap: 0.05rem; }
+    .modal-topic { padding: 0.25rem 0.4rem; font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.45; }
+    .modal-topic::before { content: '\2014'; color: rgba(255,255,255,0.15); margin-right: 0.6rem; }
+
+    .modal-outcome {
+      margin-top: 0.8rem; padding: 0.7rem 0.9rem;
+      background: rgba(105,219,124,0.06);
+      border: 1px solid rgba(105,219,124,0.12);
+      border-radius: 10px; font-size: 0.8rem; color: #69DB7C;
+      display: none;
+    }
+
+    .modal-outcome.visible { display: block; }
+
+    .modal-main-check {
+      display: flex; align-items: center; gap: 0.7rem;
+      margin-top: 0.8rem; padding: 0.6rem 0.4rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      cursor: pointer;
+    }
+
+    .modal-main-check .ck {
+      width: 20px; height: 20px; border-radius: 6px;
+      border: 1.5px solid rgba(255,255,255,0.1);
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .modal-main-check .ck.checked { background: #69DB7C; border-color: #69DB7C; box-shadow: 0 0 20px rgba(105,219,124,0.3); }
+    .modal-main-check .ck.checked svg { display: block; }
+    .modal-main-check .ck svg { display: none; width: 12px; height: 12px; color: #fff; }
+    .modal-main-check .label { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+    .modal-main-check .label.done { color: #69DB7C; }
+
+    /* ===== FOOTER note ===== */
+    .footer-note {
+      text-align: center;
+      flex-shrink: 0;
+      padding-top: 0.5rem;
+      font-size: 0.58rem;
+      color: rgba(255,255,255,0.08);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-note a {
+      color: rgba(255,255,255,0.12);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .footer-note a:hover { color: rgba(255,255,255,0.3); }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 4px; }
+
+    @media (max-width: 1000px) {
+      .container { padding: 1.2rem 1.5rem; }
+      .grid { gap: 0.7rem; }
+      .folder-icon { width: 50px; height: 37px; }
+      .folder-title { font-size: 0.68rem; }
+      .folder-check { width: 28px; height: 28px; top: -8px; right: -8px; }
+      .folder-check svg { width: 14px; height: 14px; }
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 0.8rem; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+      .header-left h1 { font-size: 0.9rem; }
+      .header-right .num { font-size: 0.85rem; }
+      .header-track { width: 80px; }
+      .folder { padding: 0.8rem 0.4rem 0.5rem; }
+      .folder-icon { width: 44px; height: 32px; }
+      .folder-title { font-size: 0.62rem; }
+      .folder-check { width: 26px; height: 26px; top: -7px; right: -7px; }
+      .folder-check svg { width: 12px; height: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- animated background -->
+  <div class="bg">
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+  </div>
+  <div class="bg-grain"></div>
+
+  <div class="container">
+    <!-- HEADLINE -->
+    <div class="headline">
+      <h2>10 Builds to HealthTech</h2>
+      <div class="sub">Patient Tasks &rarr; AI Clinical Operations</div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-section">
+      <span class="num"><span id="doneNum">0</span>/10</span>
+      <div class="progress-track-wrap"><div class="progress-fill" id="fill"></div></div>
+      <span class="status" id="progLabel">Start with Build 1</span>
+    </div>
+
+
+
+    <!-- GRID -->
+    <div class="grid-wrap">
+      <div class="grid" id="grid"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-note">
+      <a id="resetLink">&#x2716; reset</a>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-num" id="modalNum">BUILD 01</div>
+          <h2 id="modalTitle">Patient Task API</h2>
+        </div>
+        <button class="modal-close" id="modalClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="modal-problem" id="modalProblem"></div>
+      <div class="modal-sell" id="modalSell"></div>
+      <h4>Topics</h4>
+      <div class="modal-topics" id="modalTopics"></div>
+      <div class="modal-outcome" id="modalOutcome"></div>
+      <div class="modal-main-check" id="modalMainCheck">
+        <div class="ck" id="modalMainCk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span class="label" id="modalMainLabel">Mark build complete</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ACCENTS = ['#FF4757','#FF6B35','#FFC107','#2ED573','#1DD1A1','#3498DB','#5F6BBA','#8854D0','#E84393','#FF6B81'];
+    const ACCENT_DIMS = ['#cc1122','#cc4400','#cca800','#15a84c','#0ea07a','#1a7fc4','#3d4a9a','#6a2ea8','#c41e6a','#cc4055'];
+
+    const BUILDS = [
+      { id:1, title:"Patient Task Management API", problem:"Patients forget medications & daily tasks \u2014 no structured tracking", sell:"Small clinics, standalone doctors", outcome:"You can build CRUD APIs confidently while modeling healthcare data.",
+        topics:["FastAPI setup & routing (GET/POST/PUT/PATCH/DELETE)","Path & query parameters","Pydantic BaseModel, validation, defaults","Response models & status codes","Error handling (HTTPException)","Medication reminders CRUD","Daily tasks CRUD","Completion tracking"] },
+      { id:2, title:"Clinical Notes Backend", problem:"Doctors waste time on manual note-taking with no search or history", sell:"Small hospitals, private clinics", outcome:"You understand real backend persistence with healthcare data.",
+        topics:["PostgreSQL setup & SQL basics","SQLAlchemy models & relationships","Alembic migrations (upgrade, rollback)","Dependency injection (Depends())","Create patient & notes","Search notes","Visit history tracking","Project structure"] },
+      { id:3, title:"Medical Education Auth Platform", problem:"Medical platforms lack role-based access (student vs instructor vs admin)", sell:"Ed-tech platforms, coaching centers", outcome:"You can secure APIs correctly. Reusable auth system ready.",
+        topics:["JWT access & refresh tokens","OAuth2 flow","Password hashing (bcrypt)","RBAC \u2014 student, instructor, admin","Authentication middleware","Register & login endpoints","Protected routes","Secure secrets & .env"] },
+      { id:4, title:"Medical Content Upload API", problem:"Medical content (PDFs, slides, images) is scattered and hard to process", sell:"Medical colleges, content creators", outcome:"You understand I/O systems. Foundation for content pipelines.",
+        topics:["File upload (PDFs, slides, images)","File download & StreamingResponse","async vs sync routes","Event loop, blocking & non-blocking","BackgroundTasks","Metadata storage","Preview endpoints"] },
+      { id:5, title:"Healthcare Appointment Backend", problem:"Patients struggle to book appointments; clinics have scheduling chaos", sell:"Clinics, diagnostic centers", outcome:"You can structure production APIs. First complete healthcare business system.",
+        topics:["Production project structure","Config separation & logging","pytest & TestClient","Unit & integration tests","Service layer pattern","Transactions for booking","Patients, Doctors, Slots, Appointments"] },
+      { id:6, title:"Medical Tutor Chat Backend", problem:"Students have no 24/7 access to medical tutors for doubts", sell:"NEET coaching centers, ed-tech", outcome:"You can build LLM-ready APIs with real-time streaming.",
+        topics:["WebSockets","Server-Sent Events (SSE)","StreamingResponse","Async scaling & concurrency","Chat endpoint","Session storage","Message history"] },
+      { id:7, title:"Medical Document Processing Pipeline", problem:"Manual processing of medical documents (lectures, guidelines) doesn't scale", sell:"Hospitals, publishing houses", outcome:"You understand async processing at scale. Production ingestion architecture.",
+        topics:["Celery \u2014 tasks, workers, queues","Redis \u2014 broker, result backend, caching","Cache invalidation","Rate limiting","Upload \u2192 queue","Worker extracts & processes","Store structured results"] },
+      { id:8, title:"Medical Knowledge RAG Backend", problem:"Medical knowledge is locked in documents \u2014 no way to query it conversationally", sell:"Medical colleges, hospitals, research teams", outcome:"You can build retrieval systems. Knowledge infrastructure ready.",
+        topics:["Document chunking strategies","Generating embeddings","Vector database setup","RAG pipeline (retrieve \u2192 answer)","Service layer & modular monolith","API keys & rate limiting","Streaming LLM responses"] },
+      { id:9, title:"Multi-Tenant Healthcare SaaS", problem:"Small clinics can't afford custom software \u2014 no multi-tenant option exists", sell:"Multiple clinics, medical colleges (licensing)", outcome:"You can deploy commercial-grade systems. Ready for real clients.",
+        topics:["Multi-tenancy strategy","Docker & Docker Compose","Linux basics & VPS setup","Nginx reverse proxy","GitHub Actions CI/CD","Tenant permissions & config"] },
+      { id:10, title:"AI Clinical Operations Platform", problem:"Clinical workflows (intake \u2192 triage \u2192 review) are slow, manual, error-prone", sell:"Hospitals, telemedicine (portfolio flagship)", outcome:"You can design production AI backends. Your portfolio flagship.",
+        topics:["Prometheus metrics","Grafana dashboards","Event-driven architecture","Human-in-the-loop queue","Production scaling","Intake \u2192 AI \u2192 Review \u2192 Action"] }
+    ];
+
+    let state = {};
+    let activeBuild = null;
+
+    function init() {
+      const saved = localStorage.getItem('ht10');
+      if (saved) { try { state = JSON.parse(saved); return; } catch(e) {} }
+      BUILDS.forEach(b => { state[b.id] = { done: false }; });
+      save();
+    }
+
+    function save() { localStorage.setItem('ht10', JSON.stringify(state)); }
+
+    function renderGrid() {
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      BUILDS.forEach((b, idx) => {
+        const s = state[b.id];
+        const div = document.createElement('div');
+        div.className = 'folder' + (s.done ? ' completed' : '');
+        div.style.setProperty('--accent', ACCENTS[idx]);
+        div.style.setProperty('--accent-dim', ACCENT_DIMS[idx]);
+        div.dataset.id = b.id;
+
+        const fg = s.done ? ACCENTS[idx] : 'rgba(255,255,255,0.08)';
+
+        div.innerHTML = `
+          <div class="folder-icon">
+            <svg viewBox="0 0 64 47" fill="none">
+              <path d="M6 8c0-2.2 1.8-4 4-4h16l6 6h22c2.2 0 4 1.8 4 4v25c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V8z" fill="${s.done ? 'rgba(16,185,129,0.08)' : 'rgba(255,255,255,0.02)'}" stroke="${fg}" stroke-width="1.5"/>
+              <path d="M4 12c0-2.2 1.8-4 4-4h50c2.2 0 4 1.8 4 4v29c0 2.2-1.8 4-4 4H8c-2.2 0-4-1.8-4-4V12z" fill="${s.done ? 'rgba(16,185,129,0.04)' : 'rgba(255,255,255,0.01)'}" stroke="${fg}" stroke-width="1.5"/>
+            </svg>
+            <div class="folder-check ${s.done ? 'checked' : ''}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+          </div>
+          <div class="folder-number">BUILD ${String(b.id).padStart(2, '0')}</div>
+          <div class="folder-title">${b.title}</div>
+          <div class="folder-done-label">${s.done ? 'Completed' : 'view'}</div>
+        `;
+
+        const checkBtn = div.querySelector('.folder-check');
+        checkBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          s.done = !s.done;
+          save();
+          renderGrid();
+        });
+
+        div.addEventListener('click', () => openModal(b.id));
+        grid.appendChild(div);
+      });
+      updateProgress();
+    }
+
+    function openModal(id) {
+      activeBuild = id;
+      const b = BUILDS.find(x => x.id === id);
+      const s = state[id];
+
+      document.getElementById('modalNum').textContent = 'BUILD ' + String(id).padStart(2, '0');
+      document.getElementById('modalTitle').textContent = b.title;
+      document.getElementById('modalProblem').textContent = b.problem;
+      document.getElementById('modalSell').innerHTML = '<strong>Sell to:</strong> ' + b.sell;
+
+      const list = document.getElementById('modalTopics');
+      list.innerHTML = '';
+      b.topics.forEach((t) => {
+        const d = document.createElement('div');
+        d.className = 'modal-topic';
+        d.textContent = t;
+        list.appendChild(d);
+      });
+
+      const outcome = document.getElementById('modalOutcome');
+      if (s.done) { outcome.textContent = '\u2713 ' + b.outcome; outcome.classList.add('visible'); }
+      else { outcome.classList.remove('visible'); }
+
+      const mc = document.getElementById('modalMainCk');
+      const ml = document.getElementById('modalMainLabel');
+      if (s.done) { mc.classList.add('checked'); ml.classList.add('done'); ml.textContent = 'Build complete'; }
+      else { mc.classList.remove('checked'); ml.classList.remove('done'); ml.textContent = 'Mark build complete'; }
+
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    document.getElementById('modalMainCheck').addEventListener('click', () => {
+      if (activeBuild === null) return;
+      const s = state[activeBuild];
+      s.done = !s.done;
+      save();
+      openModal(activeBuild);
+      renderGrid();
+    });
+
+    document.getElementById('modalClose').addEventListener('click', () => {
+      document.getElementById('modalOverlay').classList.remove('active');
+      activeBuild = null;
+    });
+
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        document.getElementById('modalOverlay').classList.remove('active');
+        activeBuild = null;
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { document.getElementById('modalOverlay').classList.remove('active'); activeBuild = null; }
+    });
+
+    document.getElementById('resetLink').addEventListener('click', () => {
+      if (confirm('Reset all progress?')) {
+        localStorage.removeItem('ht10');
+        init();
+        renderGrid();
+      }
+    });
+
+    function updateProgress() {
+      let done = 0;
+      BUILDS.forEach(b => { if (state[b.id]?.done) done++; });
+      const pct = Math.round((done / BUILDS.length) * 100);
+      document.getElementById('doneNum').textContent = done;
+      document.getElementById('fill').style.width = pct + '%';
+      const lbl = document.getElementById('progLabel');
+      if (done === 0) lbl.textContent = 'Start with Build 1';
+      else if (done === 10) lbl.textContent = 'All done. Time to sell.';
+      else if (done <= 3) lbl.textContent = 'Foundation phase. Keep going.';
+      else if (done <= 5) lbl.textContent = 'Real skills now. Start outreach.';
+      else if (done <= 7) lbl.textContent = 'Premium territory. Raise rates.';
+      else lbl.textContent = 'Almost there. Build 10 is your flagship.';
+    }
+
+    init();
+    renderGrid();
+  </script>
+</body>
+</html>

@@ -24,18 +24,20 @@ Ten progressive FastAPI projects turn each new skill into a useful healthcare or
 
 ## The roadmap
 
-| # | Project | Core skills |
-|---|---|---|
-| 1 | Patient Task Management API | FastAPI, Pydantic, CRUD |
-| 2 | Clinical Notes Backend | PostgreSQL, SQLAlchemy, migrations |
-| 3 | Education Auth Platform | JWT, OAuth2, role-based access |
-| 4 | Medical Content Upload API | Uploads, streaming, async work |
-| 5 | Healthcare Appointment Backend | Services, transactions, testing |
-| 6 | Medical Tutor Chat Backend | Streaming, SSE, WebSockets |
-| 7 | Medical Document Processing Pipeline | Celery, Redis, background workers |
-| 8 | Medical Knowledge RAG Backend | Chunking, embeddings, retrieval |
-| 9 | Multi-Tenant Healthcare SaaS | Tenant isolation, Docker, CI/CD |
-| 10 | AI Clinical Operations Platform | AI workflows, human review, observability |
+| # | Project | Core skills | Notes |
+|---|---|---|---|
+| 1 | Patient Task Management API | FastAPI, Pydantic, CRUD | [Concept notes](01_patienttasks/concepts.md) |
+| 2 | Clinical Notes Backend | PostgreSQL, SQLAlchemy, migrations | [Concept notes](02_medicalnotes/concepts.md) |
+| 3 | Education Auth Platform | JWT, OAuth2, role-based access | [Concept notes](03_medicalauth/concepts.md) |
+| 4 | Medical Content Upload API | Uploads, streaming, async work | [Concept notes](04_medicalupload/concepts.md) |
+| 5 | Healthcare Appointment Backend | Services, transactions, testing | [Concept notes](05_healthappointments/concepts.md) |
+| 6 | Medical Tutor Chat Backend | Streaming, SSE, WebSockets | [Concept notes](06_medicaltutor/concepts.md) |
+| 7 | Medical Document Processing Pipeline | Celery, Redis, background workers | [Concept notes](07_documentpipeline/concepts.md) |
+| 8 | Medical Knowledge RAG Backend | Chunking, embeddings, retrieval | [Concept notes](08_medicalrag/concepts.md) |
+| 9 | Multi-Tenant Healthcare SaaS | Tenant isolation, Docker, CI/CD | [Concept notes](09_clinicsaas/concepts.md) |
+| 10 | AI Clinical Operations Platform | AI workflows, human review, observability | [Concept notes](10_clinicalops/concepts.md) |
+
+Each guide explains its project concepts and includes embedded SVG mindmaps beside the notes.
 
 ## Getting started
 

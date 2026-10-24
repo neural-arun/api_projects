@@ -44,7 +44,7 @@ We will create this gradually. The root `main.py` is separate; the app entry poi
 │   │   └── tasks.py                # HTTP routes and request/response handling
 │   ├── schemas/
 │   │   ├── __init__.py             # Marks schemas as a Python package
-│   │   └── task.py                 # Pydantic create, update, and response shapes
+│   │   └── task.py                 # Pydantic request and response shapes
 │   └── storage/
 │       ├── __init__.py             # Marks storage as a Python package
 │       └── task_store.py           # Temporary in-memory task data and CRUD helpers
@@ -56,7 +56,7 @@ We will create this gradually. The root `main.py` is separate; the app entry poi
 
 - **`app/main.py`** — creates `FastAPI()`, gives the API a title, and includes the task router. It does not contain the CRUD implementation.
 - **`app/api/tasks.py`** — declares paths and methods, receives path/query/body values, calls storage helpers, and chooses response codes or expected HTTP errors.
-- **`app/schemas/task.py`** — defines `TaskCreate`, `TaskUpdate`, and `TaskResponse` with Pydantic. These describe data; they do not save it.
+- **`app/schemas/task.py`** — defines `TaskCreate`, `TaskReplace`, `TaskUpdate`, and `TaskResponse` with Pydantic. These describe data; they do not save it.
 - **`app/storage/task_store.py`** — holds the temporary task collection, assigns IDs, and provides small create/read/update/delete operations. It is not a database.
 - **`tests/test_tasks.py`** — checks the API from a client’s point of view after the main behavior is built.
 - **`__init__.py` files** — make the folders importable as Python packages so files can refer to one another clearly.
@@ -131,7 +131,8 @@ We will not add a database, authentication, a service layer, real notifications,
 ### Step 8 — Update tasks with PUT and PATCH
 
 - Implement `PUT /tasks/{task_id}` for a full replacement and `PATCH /tasks/{task_id}` for selected changes.
-- Preserve fields the client omitted; allow a due time to be explicitly cleared with `null` if that is the agreed behavior.
+- Use a full-replacement schema for PUT; use `TaskUpdate` plus `model_dump(exclude_unset=True)` for PATCH.
+- Preserve fields omitted from PATCH; allow `due_at` to be explicitly cleared with `null`.
 - Return the updated task, or `404` if it does not exist.
 - **Files:** `app/api/tasks.py`, `app/schemas/task.py`, `app/storage/task_store.py`.
 - **Done when:** We can describe what the API should do when an update field is omitted versus sent as `null`.
@@ -139,16 +140,17 @@ We will not add a database, authentication, a service layer, real notifications,
 ### Step 9 — Delete tasks and make responses consistent
 
 - Implement `DELETE /tasks/{task_id}`.
-- Choose and use a consistent success response: status `204` with no body, or another appropriate status if returning data.
+- Return status `204` with no response body after a successful delete.
 - Return `404` for a task that does not exist.
-- Review response models so the API returns only the intended task fields.
+- Keep response models on task reads and writes so the API returns only the intended task fields.
 - **Files:** `app/api/tasks.py`, `app/schemas/task.py`, `app/storage/task_store.py`.
 - **Done when:** Create, read, update, and delete each have a predictable result.
 
 ### Step 10 — Add list filtering and finish validation rules
 
 - Add a query parameter such as `?completed=true` to filter a patient’s list.
-- Reject blank titles and invalid field values before storage changes.
+- Strip surrounding whitespace from titles and reject blank titles before storage changes.
+- Let Pydantic reject invalid field types and malformed date/time values before storage changes.
 - Let FastAPI/Pydantic report malformed request data as `422`; keep authorization separate from validation.
 - **Files:** `app/api/tasks.py`, `app/schemas/task.py`, and storage filtering if needed.
 - **Done when:** We can tell a path parameter from a query parameter and show a request rejected before it changes data.
@@ -164,16 +166,18 @@ We will not add a database, authentication, a service layer, real notifications,
 ### Step 12 — Add automated API tests and review the project
 
 - Add `pytest` to the root uv project as a development dependency when we reach this step.
+- Configure pytest to import the app from the `01_patienttasks` project folder.
 - Use FastAPI’s `TestClient` to check successful CRUD flows, invalid input, filtering, and `404` behavior.
 - Refactor only after behavior is understood; keep this first app small and readable.
 - **Files:** `tests/test_tasks.py`, plus focused fixes in app files if checks reveal problems.
+- **Run from the repository root:** `uv run pytest 01_patienttasks/tests`.
 - **Done when:** Automated checks pass and the final app matches the agreed routes and behavior.
 
 ## Completion checklist
 
-- [ ] All six task routes work as described.
-- [ ] Create/update inputs are validated, and response shapes are predictable.
-- [ ] Missing task IDs return `404`; invalid request data returns `422`.
-- [ ] List filtering works and `GET` requests do not change data.
-- [ ] Manual review and automated checks are complete.
-- [ ] We can explain the role of each app file and trace a request from start to response.
+- [x] All six task routes work as described.
+- [x] Create/update inputs are validated, and response shapes are predictable.
+- [x] Missing task IDs return `404`; invalid request data returns `422`.
+- [x] List filtering works and `GET` requests do not change data.
+- [x] Manual review and automated checks are complete.
+- [x] We can explain the role of each app file and trace a request from start to response.

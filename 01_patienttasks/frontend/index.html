@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f6f3" />
+    <title>Patient Tasks</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Patient Tasks home">
+          <span class="brand-mark" aria-hidden="true">✓</span>
+          <span>Care tasks</span>
+        </a>
+        <span class="demo-label">LOCAL DEMO · NO SIGN-IN</span>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> DAILY CARE</p>
+          <h1 id="page-title">Small steps,<br /><span>taken every day.</span></h1>
+          <p class="intro-copy">Keep daily tasks and care reminders in one simple list.</p>
+        </section>
+
+        <section class="patient-card" aria-labelledby="patient-heading">
+          <div>
+            <p class="eyebrow">TASK LIST</p>
+            <h2 id="patient-heading">Choose a patient ID</h2>
+            <p class="patient-help">Use any positive number to open that demo task list.</p>
+          </div>
+          <form id="patient-form" class="patient-form">
+            <label class="field" for="patient-id">
+              <span>Patient ID</span>
+              <input id="patient-id" name="patient_id" type="number" min="1" step="1" value="42" required />
+            </label>
+            <button class="secondary-button load-button" type="submit">Load list</button>
+          </form>
+        </section>
+
+        <section class="add-card" aria-labelledby="add-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">MAKE A PLAN</p>
+              <h2 id="add-title">Add a task</h2>
+            </div>
+            <span class="add-icon" aria-hidden="true">+</span>
+          </div>
+          <p class="patient-context">Showing tasks for patient <strong id="active-patient-label">42</strong></p>
+
+          <form id="task-form">
+            <div class="form-fields">
+              <label class="field field-title" for="task-title">
+                <span>Task name</span>
+                <input
+                  id="task-title"
+                  name="title"
+                  type="text"
+                  placeholder="e.g. Take medication"
+                  autocomplete="off"
+                  required
+                />
+              </label>
+
+              <label class="field" for="task-due-at">
+                <span>Due time <span class="optional-label">Optional</span></span>
+                <input id="task-due-at" name="due_at" type="datetime-local" />
+              </label>
+
+              <button class="primary-button" type="submit">Add task</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="tasks-section" aria-labelledby="tasks-title">
+          <div class="tasks-heading">
+            <div>
+              <p class="eyebrow">YOUR LIST</p>
+              <h2 id="tasks-title">Today’s tasks <span id="task-count" class="count-pill">0</span></h2>
+            </div>
+            <div class="filters" id="task-filters" role="group" aria-label="Filter tasks">
+              <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+              <button class="filter-button" type="button" data-filter="todo" aria-pressed="false">To do</button>
+              <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Done</button>
+            </div>
+          </div>
+
+          <p id="notice" class="notice" role="status" aria-live="polite" hidden></p>
+          <ul id="task-list" class="task-list" aria-label="Tasks"></ul>
+          <div id="empty-state" class="empty-state" hidden>
+            <span class="empty-icon" aria-hidden="true">✳</span>
+            <p id="empty-title" class="empty-title">No tasks yet</p>
+            <p id="empty-copy" class="empty-copy">Add your first task above to get started.</p>
+          </div>
+        </section>
+      </main>
+
+      <dialog id="details-dialog" class="dialog">
+        <section class="dialog-card" aria-labelledby="details-title">
+          <button class="dialog-close" type="button" data-close-details aria-label="Close task details">×</button>
+          <p class="eyebrow">TASK DETAILS</p>
+          <h2 id="details-title"></h2>
+          <dl class="details-list">
+            <div><dt>Task ID</dt><dd id="details-id"></dd></div>
+            <div><dt>Patient ID</dt><dd id="details-patient"></dd></div>
+            <div><dt>Due time</dt><dd id="details-due"></dd></div>
+            <div><dt>Status</dt><dd id="details-status"></dd></div>
+          </dl>
+          <button class="secondary-button dialog-action" type="button" data-close-details>Close</button>
+        </section>
+      </dialog>
+
+      <dialog id="edit-dialog" class="dialog">
+        <form id="edit-form" class="dialog-card" aria-labelledby="edit-title">
+          <button class="dialog-close" type="button" data-close-edit aria-label="Close edit task">×</button>
+          <p class="eyebrow">FULL REPLACEMENT · PUT</p>
+          <h2 id="edit-title">Replace task</h2>
+          <input id="edit-task-id" type="hidden" />
+          <label class="field dialog-field" for="edit-task-name">
+            <span>Task name</span>
+            <input id="edit-task-name" type="text" required />
+          </label>
+          <label class="field dialog-field" for="edit-task-due">
+            <span>Due time <span class="optional-label">Optional</span></span>
+            <input id="edit-task-due" type="datetime-local" />
+          </label>
+          <label class="completed-field" for="edit-task-completed">
+            <input id="edit-task-completed" type="checkbox" />
+            <span>Task is complete</span>
+          </label>
+          <div class="dialog-actions">
+            <button class="secondary-button" type="button" data-close-edit>Cancel</button>
+            <button class="primary-button" type="submit">Save replacement</button>
+          </div>
+        </form>
+      </dialog>
+
+      <footer class="footer-note">
+        <span class="footer-dot" aria-hidden="true"></span>
+        Demo only · Switch IDs to browse lists. Tasks reset when the server restarts.
+      </footer>
+    </div>
+  </body>
+</html>

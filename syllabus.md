@@ -14,19 +14,19 @@
 **Sell to:** Small clinics, standalone doctors
 
 ### Build
-- [ ] Medication reminders CRUD
-- [ ] Daily tasks CRUD
-- [ ] Completion tracking
+- [x] Medication reminders CRUD
+- [x] Daily tasks CRUD
+- [x] Completion tracking
 
 ### Topics
-- [ ] What FastAPI is, ASGI, Request → Response lifecycle
-- [ ] Install FastAPI + Uvicorn, run server, hot reload
-- [ ] GET, POST, PUT, PATCH, DELETE
-- [ ] Path parameters, Query parameters
-- [ ] JSON parsing, Validation
-- [ ] Pydantic BaseModel, Validation, Defaults, Optional fields
-- [ ] Response models, Status codes
-- [ ] HTTPException
+- [x] What FastAPI is, ASGI, Request → Response lifecycle
+- [x] Install FastAPI + Uvicorn, run server, hot reload
+- [x] GET, POST, PUT, PATCH, DELETE
+- [x] Path parameters, Query parameters
+- [x] JSON parsing, Validation
+- [x] Pydantic BaseModel, Validation, Defaults, Optional fields
+- [x] Response models, Status codes
+- [x] HTTPException
 
 **Outcome:** You can build CRUD APIs confidently.
 

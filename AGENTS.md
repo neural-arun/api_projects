@@ -18,6 +18,17 @@ When Arun asks you to implement a project:
 3. Read the relevant project's topic notes, linked from the root `README.md`.
 4. Create a phase-by-phase plan for that project before implementation.
 
+## How to write a project plan
+
+- Write the plan in `plan.md` inside the project's folder.
+- Start with the project goal, scope, and the main behavior the app will provide.
+- Show the target file structure and explain the job of every planned file and folder.
+- Order the work from understanding the requirements and setting up the structure through building, reviewing, and testing the app.
+- Break work into small numbered steps. For every step, state what we will learn or build, which files it touches, and a clear checkpoint for knowing it is complete.
+- Use concise bullets, concrete examples, and plain explanations. Avoid long theoretical paragraphs and unexplained architecture.
+- Make the plan practical to follow together: complete one step at a time, explain it before implementation, and pause at each checkpoint before moving on.
+- Keep the project's scope focused. Name later-project features that are deliberately out of scope rather than adding them to the build.
+
 ## How to teach and build
 
 - Build the project one phase at a time with arun so Arun can understand each part.

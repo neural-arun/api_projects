@@ -1,0 +1,290 @@
+@page {
+  size: A4;
+  margin: 17mm 17mm 20mm;
+
+  @top-left {
+    content: "API PROJECTS  /  CONCEPT GUIDE";
+    color: #718196;
+    font: 700 7.5pt "DejaVu Sans", sans-serif;
+    letter-spacing: 0.08em;
+  }
+
+  @bottom-left {
+    content: "Learn the idea  ·  See where it fits  ·  Build it";
+    color: #8794a5;
+    font: 8pt "DejaVu Sans", sans-serif;
+  }
+
+  @bottom-right {
+    content: counter(page, decimal-leading-zero);
+    color: #52657a;
+    font: 700 8pt "DejaVu Sans", sans-serif;
+  }
+}
+
+@page:first {
+  @top-left { content: none; }
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+
+html {
+  color: #24364b;
+  font-family: "DejaVu Sans", sans-serif;
+  font-size: 10pt;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  orphans: 3;
+  widows: 3;
+}
+
+header#title-block-header {
+  box-sizing: border-box;
+  display: block;
+  min-height: 297mm;
+  margin: -17mm -17mm -20mm;
+  padding: 48mm 25mm 35mm;
+  color: #f7fbff;
+  background: linear-gradient(145deg, #132940 0%, #174b5b 57%, #287b7d 100%);
+  page-break-after: always;
+}
+
+header#title-block-header::before {
+  display: block;
+  margin-bottom: 14mm;
+  color: #8ee0d4;
+  content: "THE PROJECT GUIDE  /  10 BUILDS";
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+header#title-block-header h1.title {
+  max-width: 145mm;
+  margin: 0;
+  color: #fff;
+  font-size: 38pt;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+header#title-block-header p.subtitle {
+  max-width: 135mm;
+  margin: 9mm 0 0;
+  color: #d5e8ee;
+  font-size: 17pt;
+  line-height: 1.35;
+}
+
+header#title-block-header p.author {
+  margin: 13mm 0 0;
+  color: #aee3db;
+  font-size: 10pt;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+nav#TOC {
+  margin: 0 0 8mm;
+  padding: 0;
+  page-break-after: always;
+}
+
+nav#TOC::before {
+  display: block;
+  margin: 0 0 8mm;
+  color: #173b53;
+  content: "The 10 projects";
+  font-size: 25pt;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+nav#TOC h2 {
+  margin: 0 0 8mm;
+  color: #173b53;
+  font-size: 25pt;
+  letter-spacing: -0.025em;
+}
+
+nav#TOC > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav#TOC > ul > li {
+  margin: 0;
+  border-bottom: 1px solid #dce6ed;
+}
+
+nav#TOC a {
+  display: block;
+  padding: 3.2mm 1mm;
+  color: #275c70;
+  font-size: 11pt;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+nav#TOC a::after {
+  float: right;
+  color: #8394a5;
+  content: target-counter(attr(href), page);
+  font-size: 9pt;
+  font-weight: 400;
+}
+
+h1:not(.title) {
+  break-before: page;
+  margin: 0 0 8mm;
+  padding: 0 0 4mm;
+  border-bottom: 2px solid #dce9ec;
+  color: #173b53;
+  font-size: 25pt;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  page-break-after: avoid;
+}
+
+h2 {
+  margin: 11mm 0 2mm;
+  color: #176a70;
+  font-size: 16pt;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  page-break-after: avoid;
+}
+
+h3 {
+  margin: 0 0 4mm;
+  color: #718196;
+  font-size: 10pt;
+  font-weight: 600;
+  line-height: 1.35;
+  page-break-after: avoid;
+}
+
+p {
+  margin: 0 0 3.2mm;
+}
+
+strong {
+  color: #20445b;
+  font-weight: 700;
+}
+
+blockquote {
+  margin: 0 0 7mm;
+  padding: 4mm 5mm;
+  border-left: 3px solid #36a69b;
+  border-radius: 0 3mm 3mm 0;
+  background: #edf7f5;
+  color: #315568;
+  page-break-inside: avoid;
+}
+
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol {
+  margin: 1.5mm 0 4mm;
+  padding-left: 7mm;
+}
+
+li { margin: 1.4mm 0; }
+
+li::marker { color: #31938e; }
+
+table {
+  width: 100%;
+  margin: 4mm 0 6mm;
+  border-collapse: collapse;
+  font-size: 9pt;
+  page-break-inside: avoid;
+}
+
+thead { display: table-header-group; }
+
+th {
+  padding: 2.5mm 3mm;
+  background: #e7f0f2;
+  color: #20445b;
+  text-align: left;
+}
+
+td {
+  padding: 2.3mm 3mm;
+  border-bottom: 1px solid #e2e9ee;
+  vertical-align: top;
+}
+
+tr:nth-child(even) td { background: #f7fafb; }
+
+pre {
+  margin: 3mm 0 5mm;
+  padding: 4mm 5mm;
+  border: 1px solid #dce6ec;
+  border-radius: 2mm;
+  background: #f4f7fa;
+  color: #24364b;
+  font-family: "DejaVu Sans Mono", monospace;
+  font-size: 8.5pt;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  page-break-inside: avoid;
+}
+
+code {
+  color: #215d70;
+  font-family: "DejaVu Sans Mono", monospace;
+  font-size: 0.91em;
+}
+
+figure {
+  display: block;
+  width: 100%;
+  margin: 4mm 0 8mm;
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  max-height: 76mm;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+figcaption {
+  margin-top: 1.5mm;
+  color: #75869a;
+  font-size: 8pt;
+  font-weight: 600;
+}
+
+figure img.flow-figure {
+  width: 82%;
+  max-height: none;
+}
+
+a {
+  color: #126f78;
+  text-decoration-color: #8bbebc;
+  overflow-wrap: anywhere;
+}
+
+hr {
+  margin: 7mm 0;
+  border: 0;
+  border-top: 1px solid #e2e9ee;
+}
+
+@media print {
+  h2, h3, figure, blockquote, table, pre { break-inside: avoid; }
+  h2 { break-after: avoid; }
+}

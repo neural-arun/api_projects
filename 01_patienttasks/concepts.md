@@ -9,29 +9,46 @@
 ## ⚡ 01 · Start the API
 ### FastAPI · ASGI · Uvicorn
 
-**🧠 Concept** — FastAPI is the Python framework for defining API operations. ASGI (Asynchronous Server Gateway Interface) is the handoff between the app and web server. Uvicorn is the server that receives HTTP requests and passes them to FastAPI.
+**🧠 Concept**
 
-**🩺 In Patient Tasks** — A “mark complete” request travels from the patient app to the task operation, then the result goes back to the app.
+- **API:** The agreed way one program asks another program to do something and receives a result. The patient app calls the API instead of reaching into the server’s Python code.
+- **FastAPI:** The Python framework where we define the API’s routes, input rules, and operations, such as “create a task.”
+- **Uvicorn:** The web server that listens for requests from apps and passes them to the FastAPI application.
+- **ASGI (Asynchronous Server Gateway Interface):** The standard handoff between Uvicorn and FastAPI. It lets the server and Python application pass requests and responses to each other.
+- **Together:** Uvicorn receives; ASGI hands off; FastAPI chooses and runs the operation; the response travels back to the app.
 
-**🛠 Build it** — This project uses uv. FastAPI’s standard extra includes Uvicorn:
+**⚠️ Important to remember**
 
-~~~sh
-uv add "fastapi[standard]"
-~~~
+- Creating `app = FastAPI()` creates the application object; it does not start a web server. Uvicorn starts listening when you run the development command.
+- `async def` does not automatically make code faster. Async helps when the code awaits async-friendly I/O; a blocking call inside an async route can still hold up other requests.
 
-Create the FastAPI app in main.py:
+**🩺 In Patient Tasks**
 
-~~~python
-from fastapi import FastAPI
+- When a patient taps “complete,” the app sends a request to Uvicorn.
+- FastAPI finds the operation for that request, updates the task, and sends the result back to the app.
 
-app = FastAPI()
-~~~
+**🛠 Build it**
 
-Start the development server; it reloads after code changes. Open /docs to explore the API.
+- Add FastAPI and its standard tools. The standard extra includes Uvicorn:
 
-~~~sh
-uv run fastapi dev main.py
-~~~
+  ~~~sh
+  uv add "fastapi[standard]"
+  ~~~
+
+- Create the FastAPI app in `main.py`:
+
+  ~~~python
+  from fastapi import FastAPI
+
+  app = FastAPI()
+  ~~~
+
+- Start the development server. It reloads when code changes.
+- FastAPI generates `/docs` from the API’s routes and models; open it in a browser to explore and try the API.
+
+  ~~~sh
+  uv run fastapi dev main.py
+  ~~~
 
 ![Mind map: Patient Tasks API](assets/mindmaps/01-api-request-flow.svg)
 
@@ -40,11 +57,30 @@ uv run fastapi dev main.py
 ## 🌐 02 · HTTP messages  
 ### Requests · responses · JSON
 
-**🧠 Concept** — An HTTP request tells the server what action to take, which resource to use, and sometimes what data to use. A response reports what happened. JSON is a common format for request and response data.
+**🧠 Concept**
 
-**🩺 In Patient Tasks** — To add a task, the app sends a title and due time; the API replies with the saved task or an error.
+- **HTTP (Hypertext Transfer Protocol):** The request-and-response conversation apps use with web servers. The app sends a request; the API sends one response.
+- **Method:** Says what action the app wants, such as read (`GET`) or create (`POST`).
+- **Path:** Says which resource is involved, such as `/tasks/81` for task 81.
+- **Query:** Adds optional list choices, such as `?due=today`. It usually filters a result rather than naming a different operation.
+- **Headers:** Carry request details, such as the data format. `Content-Type: application/json` tells the API the body is JSON.
+- **Body:** Carries the data to create or change. A read request often has no body.
+- **Response:** Includes a status code for the outcome and may include a body with returned data.
+- **JSON (JavaScript Object Notation):** A common format for structured data. Objects use named fields; values can be text, numbers, `true`/`false`, or `null` (no value).
 
-**🛠 Build it** — Put create/update fields in a JSON body. For example:
+**⚠️ Important to remember**
+
+- **HTTP is stateless:** Each request stands on its own. The server does not automatically remember which task the previous request was about, so include the needed ID and data each time.
+- **Omitted and `null` are different:** Omitted means “no value was sent”; `null` explicitly means “there is no value.” This distinction matters when updating an optional due time.
+
+**🩺 In Patient Tasks**
+
+- To add a task, the app sends the title and due time in the request body.
+- The API replies with the saved task, including its server-assigned ID, or an error that explains why the request was rejected.
+
+**🛠 Build it**
+
+- Put create/update fields in a JSON body. For example:
 
 ~~~json
 {
@@ -53,13 +89,10 @@ uv run fastapi dev main.py
 }
 ~~~
 
-| Request part | What it does | Example |
-|---|---|---|
-| Method | Names the action | POST |
-| Path | Names the resource | /patients/42/tasks |
-| Query | Filters a list | ?due=today |
-| JSON body | Carries task fields | Title and due time |
-| Response | Reports result | Status + saved task |
+- `POST` — create a task.
+- `/patients/42/tasks` — create it in patient 42’s task collection.
+- The JSON body — supplies fields such as `title` and `due_at`.
+- The response — reports a status and, on success, the saved task.
 
 ![Mind map: HTTP exchange](assets/mindmaps/02-http-exchange.svg)
 
@@ -68,21 +101,34 @@ uv run fastapi dev main.py
 ## 🧭 03 · Routes & HTTP methods  
 ### Send each action to the right operation
 
-**🧠 Concept** — A route pairs a method with a path. FastAPI uses that pair to choose which operation runs.
+**🧠 Concept**
 
-**🩺 In Patient Tasks** — Use a patient ID in the path to find their list; use a task ID to update or remove one task. Use query values for optional filters.
+- **Route:** A rule that connects a request to a Python operation.
+- **Route match:** FastAPI checks both the HTTP method and path. `GET /tasks/81` and `PATCH /tasks/81` use the same path but run different operations.
+- **Path parameter:** Identifies the resource, such as patient `42` or task `81`.
+- **Query parameter:** Adds an option to a request, often to filter a list, such as `?due=today`.
+- **HTTP method:** Signals the intended action. The method names are conventions that make APIs predictable for clients.
+
+**⚠️ Important to remember**
+
+- **Keep `GET` read-only.** Browsers, caches, or clients may repeat a `GET`; it should not mark a task complete or otherwise change data.
+- **Specific routes can overlap with variable routes.** If you add `/tasks/today` as well as `/tasks/{task_id}`, declare the fixed `/tasks/today` route first so `today` is not treated as an ID.
+- **An ID is not permission.** Knowing `/tasks/81` must not be enough to read or change it; a later authenticated version must also check that the signed-in user may access that task.
+
+**🩺 In Patient Tasks**
+
+- Use a patient ID in the path to find that patient’s tasks and a task ID to target one task.
+- Use a query value to filter the list without changing which operation runs.
 
 **🛠 Build it**
 
-| Method | Usual action | Patient Tasks |
-|---|---|---|
-| GET | Read | List tasks or fetch one |
-| POST | Create | Add a task or reminder |
-| PUT | Replace | Send the full task with changes |
-| PATCH | Partially update | Change only completion status |
-| DELETE | Remove | Remove from the active list |
-
-Examples: GET /patients/42/tasks?due=today lists today’s tasks; PATCH /tasks/81 marks task 81 complete.
+- `GET /patients/42/tasks` — read patient 42’s task list. Add `?due=today` to filter it.
+- `GET /tasks/81` — read one task.
+- `POST /patients/42/tasks` — create a task for patient 42.
+- `PUT /tasks/81` — replace the task by sending its full new representation.
+- `PATCH /tasks/81` — change only selected fields, such as its completion status.
+- `DELETE /tasks/81` — remove the task.
+- For this beginner project, remember: `PUT` sends a replacement; `PATCH` sends only changes.
 
 ![Mind map: Routes](assets/mindmaps/03-routes-and-methods.svg)
 
@@ -91,20 +137,33 @@ Examples: GET /patients/42/tasks?due=today lists today’s tasks; PATCH /tasks/8
 ## 📦 04 · Pydantic BaseModel  
 ### Describe the data shape
 
-**🧠 Concept** — A Pydantic BaseModel defines the fields and types expected in JSON. FastAPI parses JSON into that model so the operation receives structured data.
+**🧠 Concept**
 
-**🩺 In Patient Tasks** — A task has a title, may have a due time, and starts incomplete.
+- **Model/schema:** A description of the data an API accepts or returns: field names, types, and required values. Think of it as a form definition.
+- **Pydantic `BaseModel`:** The Python tool used to define that description.
+- **Parsing:** FastAPI reads the JSON body and Pydantic turns it into a Python object whose fields can be accessed by name.
+- **Type checking:** Pydantic checks values against the declared types. If required fields are missing or values cannot be accepted, FastAPI returns a validation error before the operation changes a task.
+- **Important boundary:** These models define the API’s data shape. They do not save data in a database by themselves.
 
-**🛠 Build it** — Use separate models for creating, updating, and returning tasks.
+**⚠️ Important to remember**
 
-| Field | Create task | Update task |
-|---|---|---|
-| Title | Required text | Optional change |
-| Due time | Optional date/time | Optional change |
-| Completed | Defaults to false | Optional change |
-| ID | Set by server | Never sent by app |
+- In Pydantic v2, `due_at: datetime | None` allows `null`, but the field is still required unless it has a default such as `= None`.
+- For partial updates, save only fields the client actually sent. In Pydantic, `model_dump(exclude_unset=True)` helps keep omitted fields from accidentally overwriting saved values.
 
-A field with a default can be omitted. A field that allows null can also be sent as JSON null. A PATCH model makes fields optional so the app can change just one field.
+**🩺 In Patient Tasks**
+
+- **Create model:** Requires a title; the due time can be absent. The server supplies the ID and initial `completed = false` value.
+- **Update model:** Accepts only the fields the patient wants to change.
+- **Response model:** Includes the saved task’s ID, title, due time, and completion state.
+
+**🛠 Build it**
+
+- Use separate models for task creation, partial updates, and responses; each has a different job.
+- A field with a default can be omitted from the request.
+- A field that allows `null` can explicitly have no value; for example, a patient could clear a task’s due time.
+- For a partial update, an omitted field means “keep the current value”; a supplied value means “change it.”
+- This difference matters: if the patient omits `due_at`, keep its old value; if they send `"due_at": null`, clear it.
+
 
 ![Mind map: Task data](assets/mindmaps/04-task-data.svg)
 
@@ -113,11 +172,30 @@ A field with a default can be omitted. A field that allows null can also be sent
 ## ✅ 05 · Validation  
 ### Catch invalid data before saving
 
-**🧠 Concept** — Validation checks that data has the right types and follows the app’s rules.
+**🧠 Concept**
 
-**🩺 In Patient Tasks** — Reject a blank title, an invalid date/time, or a completion value that is not true/false. Reminder details still need to come from the authorized care plan.
+- **Purpose:** Check a request before using its data, so invalid input does not corrupt or confuse task data.
+- **Shape/type checks:** Is `title` text? Is `completed` a true/false value? Are required fields present? FastAPI and Pydantic handle many of these checks.
+- **Field rules:** Does the title contain something besides spaces? Is the due time in a format we understand? We add rules like these to the application.
+- **Business rules:** Is this action allowed for this task? For example, a completed task may not be editable in a future version of the project.
+- **Validation vs permission:** Valid data does not prove the user is allowed to change a task. The API must check permission separately when the project adds users and authentication.
 
-**🛠 Build it** — Let FastAPI/Pydantic catch missing or wrongly typed fields. Add simple task rules before changing data. Invalid request data returns 422.
+**⚠️ Important to remember**
+
+- FastAPI checks the request shape before it runs the route function. If the body is invalid, the code that changes the task does not run.
+- Validation answers “is this data acceptable?” Authorization answers “is this user allowed?” A request can pass validation and still be forbidden.
+
+**🩺 In Patient Tasks**
+
+- Reject a blank title, a date/time the API cannot understand, or a completion value that is not true or false.
+- A request can have the right shape and still break a project rule. Check both before changing a task.
+- Reminder details must come from an authorized care plan; valid input alone does not grant permission to create a reminder.
+
+**🛠 Build it**
+
+- Let FastAPI/Pydantic report missing or wrongly typed fields.
+- Add task-specific checks before changing the task.
+- Return status `422` for invalid request data. It tells the app to correct the request and try again.
 
 ![Mind map: Validation](assets/mindmaps/05-validation.svg)
 
@@ -126,11 +204,29 @@ A field with a default can be omitted. A field that allows null can also be sent
 ## 🔁 06 · CRUD  
 ### Manage task records
 
-**🧠 Concept** — CRUD means Create, Read, Update, Delete: the four basic operations on saved information.
+**🧠 Concept**
 
-**🩺 In Patient Tasks** — Create a task, show a task or list, edit or complete a task, and remove a task.
+- **Create:** Add a new record.
+- **Read:** Fetch one record or a list of records.
+- **Update:** Change some or all fields on an existing record.
+- **Delete:** Remove a record or make it no longer available.
+- CRUD describes what happens to the data; HTTP methods and routes are how a client asks the API to do it.
 
-**🛠 Build it** — Connect each operation to a route. Use an in-memory list for this first exercise; it clears when the server restarts. Database persistence is covered in Build 2.
+**⚠️ Important to remember**
+
+- A Python list is temporary storage, not a database. Restarting the app clears it.
+- Each Uvicorn worker is a separate process with its own memory. With multiple workers, one may not see a task another worker added; use a shared database for real persistence.
+
+**🩺 In Patient Tasks**
+
+- Create a task, read one task or the patient’s list, update its title or completion state, and delete it.
+- Each action must target the intended task and tell the app what happened.
+
+**🛠 Build it**
+
+- Connect each CRUD action to a route.
+- Use an in-memory list for this first exercise. It is simple, but it disappears when the server restarts and is not shared between separate server processes.
+- Build 2 adds a database so tasks remain saved after the API stops.
 
 ![Mind map: CRUD tasks](assets/mindmaps/06-crud.svg)
 
@@ -139,19 +235,31 @@ A field with a default can be omitted. A field that allows null can also be sent
 ## 📤 07 · Response models & status codes  
 ### Return a predictable result
 
-**🧠 Concept** — A response model defines which fields the API returns. A status code summarizes the outcome.
+**🧠 Concept**
 
-**🩺 In Patient Tasks** — Return the task ID, title, due time, and completion status. Keep internal fields out of the response.
+- **Response model:** Describes the fields and types the API sends back. It makes the output predictable and can keep internal fields out of the response.
+- **Status code:** A standard number that summarizes the result. The app can react to it without guessing from a message.
+- **2xx:** The request succeeded.
+- **4xx:** The request could not be completed as sent, for example because the task was missing or the data was invalid.
 
-**🛠 Build it** — Use one task response model for create/read/update results.
+**⚠️ Important to remember**
 
-| Status | Meaning |
-|---|---|
-| 200 | Read or update succeeded |
-| 201 | Task created |
-| 204 | Task deleted; no body |
-| 404 | Task not found |
-| 422 | Request data invalid |
+- A response model only protects fields that are left out of that model. If a field is added to the response schema, the API may expose it to clients.
+- `204` means there is no response body. If the app needs the deleted task returned, choose a response that includes a body instead.
+
+**🩺 In Patient Tasks**
+
+- Return the task ID, title, due time, and completion status in the same shape after creating, reading, or updating a task.
+- The app can display those known fields without depending on internal server details.
+
+**🛠 Build it**
+
+- Use a task response model for create/read/update results.
+- `200` — read or update succeeded; the response usually includes the task.
+- `201` — the task was created; the response can include the new task.
+- `204` — the task was deleted; there is no response body.
+- `404` — the requested task was not found.
+- `422` — the request data failed validation.
 
 ![Mind map: API response](assets/mindmaps/07-responses.svg)
 
@@ -160,11 +268,28 @@ A field with a default can be omitted. A field that allows null can also be sent
 ## 🚨 08 · HTTPException  
 ### Report expected errors
 
-**🧠 Concept** — HTTPException stops an operation and returns a chosen status code with a short message.
+**🧠 Concept**
 
-**🩺 In Patient Tasks** — If task 81 does not exist, the update route should return 404 rather than pretending it worked.
+- **Expected error:** A normal situation the API should handle, such as asking for a task that does not exist.
+- **Raise `HTTPException`:** Stop the current operation immediately and return the chosen HTTP status and `detail` message to the app.
+- **Safe detail:** Explain the problem in a way the user can act on, without exposing internal code or sensitive data.
+- **Not every failure is expected:** A missing task is a 404; invalid input is usually a 422; an unexpected bug should become a generic 500 response while its technical details stay in server logs.
 
-**🛠 Build it** — Check for the task before updating or deleting. If it is missing, raise HTTPException with status 404 and a safe message. FastAPI already returns 422 for invalid request data; keep unexpected error details in server logs.
+**⚠️ Important to remember**
+
+- Use `raise HTTPException(...)`, not `return HTTPException(...)`. Raising stops the route and lets FastAPI build the error response.
+- The `detail` text is sent to the client. Keep it useful and safe; do not put stack traces, database errors, or private patient information there.
+
+**🩺 In Patient Tasks**
+
+- If task 81 does not exist, return `404` so the app knows there is nothing to update.
+- Returning success would mislead the app and the patient into thinking the task changed.
+
+**🛠 Build it**
+
+- Look up the task before updating or deleting it.
+- If it is missing, raise `HTTPException` with status `404` and a short, safe message. The route stops instead of trying to change a nonexistent task.
+- Let FastAPI return `422` for invalid request data. Keep unexpected technical details in server logs, not in the response.
 
 ![Mind map: HTTPException](assets/mindmaps/08-errors.svg)
 
@@ -172,14 +297,23 @@ A field with a default can be omitted. A field that allows null can also be sent
 
 ## 🧩 One request, end to end
 
-When a patient marks a task complete:
+**Example:** The patient marks task 81 complete by sending:
 
-1. Uvicorn receives the request and hands it to FastAPI through ASGI.
-2. The route matches the method and task ID.
-3. Pydantic parses the JSON; validation checks the fields.
-4. CRUD updates the task.
-5. The response model shapes the result; the status code reports success.
-6. If the task is missing, HTTPException returns 404.
+~~~http
+PATCH /tasks/81
+Content-Type: application/json
+
+{"completed": true}
+~~~
+
+**Follow the request:**
+
+- **Receive:** Uvicorn receives the HTTP request and hands it to FastAPI through ASGI.
+- **Choose the operation:** FastAPI matches `PATCH /tasks/{task_id}` and reads `81` as the task ID.
+- **Check the body:** Pydantic turns the JSON into update data; validation checks `completed` is true or false.
+- **Apply the change:** The task operation finds task 81 and changes its completion state.
+- **Reply:** The response model shapes the returned task; status `200` tells the app the update succeeded.
+- **If the task is missing:** The operation stops and returns `404` instead.
 
 ~~~mermaid
 ---

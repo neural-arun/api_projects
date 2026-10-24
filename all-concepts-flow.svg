@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="0 0 1000 480" role="img" aria-labelledby="title desc">
+  <title id="title">One request, end to end</title>
+  <desc id="desc">A patient app sends a request through Uvicorn, FastAPI, and validation. Valid changes are saved and returned; invalid requests and missing tasks produce clear errors.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#55718a"/>
+    </marker>
+    <style>
+      .title { font: 700 25px 'DejaVu Sans', sans-serif; fill: #173b53; }
+      .node { fill: #f3f8fa; stroke: #9ab6c3; stroke-width: 2; }
+      .nodeText { font: 700 18px 'DejaVu Sans', sans-serif; fill: #24445b; text-anchor: middle; }
+      .smallText { font: 600 14px 'DejaVu Sans', sans-serif; fill: #597286; text-anchor: middle; }
+      .line { fill: none; stroke: #55718a; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow); }
+      .valid { fill: #e8f6ef; stroke: #58a884; }
+      .response { fill: #eaf3fb; stroke: #719cc3; }
+      .error { fill: #fff1ed; stroke: #d88772; }
+    </style>
+  </defs>
+  <rect width="1000" height="480" rx="24" fill="#fbfcfe"/>
+  <text x="32" y="45" font-family="DejaVu Sans" font-size="25" font-weight="700" fill="#173b53">ONE REQUEST, END TO END</text>
+  <text x="800" y="45" text-anchor="middle" font-family="DejaVu Sans" font-size="14" font-weight="600" fill="#597286">REQUEST → VALIDATION</text>
+  <text x="320" y="264" text-anchor="middle" font-family="DejaVu Sans" font-size="14" font-weight="600" fill="#597286">RESPONSE RETURNS TO THE APP</text>
+
+  <path class="line" d="M200 137 H236"/>
+  <path class="line" d="M410 137 H446"/>
+  <path class="line" d="M620 137 H656"/>
+  <path class="line" d="M745 180 V211"/>
+
+  <rect class="node" x="30" y="100" width="170" height="74" rx="16"/>
+  <text x="115" y="144" text-anchor="middle" font-family="DejaVu Sans" font-size="18" font-weight="700" fill="#24445b">Patient app</text>
+  <rect class="node" x="240" y="100" width="170" height="74" rx="16"/>
+  <text x="325" y="135" text-anchor="middle" font-family="DejaVu Sans" font-size="18" font-weight="700" fill="#24445b">Uvicorn</text>
+  <text x="325" y="157" text-anchor="middle" font-family="DejaVu Sans" font-size="14" font-weight="600" fill="#597286">ASGI handoff</text>
+  <rect class="node" x="450" y="100" width="170" height="74" rx="16"/>
+  <text x="535" y="144" text-anchor="middle" font-family="DejaVu Sans" font-size="18" font-weight="700" fill="#24445b">FastAPI route</text>
+  <rect class="node" x="660" y="100" width="170" height="74" rx="16"/>
+  <text x="745" y="132" text-anchor="middle" font-family="DejaVu Sans" font-size="18" font-weight="700" fill="#24445b">Parse JSON</text>
+  <text x="745" y="154" text-anchor="middle" font-family="DejaVu Sans" font-size="14" font-weight="600" fill="#597286">and validate</text>
+
+  <path d="M745 212 L783 250 L745 288 L707 250 Z" fill="#fff8e8" stroke="#c99d4e" stroke-width="2.5"/>
+  <text x="745" y="254" text-anchor="middle" font-family="DejaVu Sans" font-size="14" font-weight="600" fill="#597286">Valid?</text>
+
+  <path class="line" d="M707 250 H685 V326 H660"/>
+  <text x="676" y="278" text-anchor="middle" font-family="DejaVu Sans" font-size="14" font-weight="600" fill="#597286">Yes</text>
+  <path class="line" d="M490 326 H430"/>
+  <path class="line" d="M260 326 H200"/>
+  <path class="line" d="M575 363 V388"/>
+
+  <rect class="node valid" x="490" y="290" width="170" height="72" rx="16"/>
+  <text x="575" y="333" text-anchor="middle" font-family="DejaVu Sans" font-size="18" font-weight="700" fill="#24445b">Save task</text>
+  <rect class="node response" x="260" y="290" width="170" height="72" rx="16"/>
+  <text x="345" y="333" text-anchor="middle" font-family="DejaVu Sans" font-size="18" font-weight="700" fill="#24445b">Shape response</text>
+  <rect class="node response" x="30" y="290" width="170" height="72" rx="16"/>
+  <text x="115" y="333" text-anchor="middle" font-family="DejaVu Sans" font-size="18" font-weight="700" fill="#24445b">Patient app</text>
+
+  <path class="line" d="M783 250 H900 V389"/>
+  <text x="878" y="277" text-anchor="middle" font-family="DejaVu Sans" font-size="14" font-weight="600" fill="#597286">No</text>
+  <rect class="node error" x="790" y="390" width="180" height="58" rx="14"/>
+  <text x="880" y="426" text-anchor="middle" font-family="DejaVu Sans" font-size="18" font-weight="700" fill="#24445b">422 · Invalid data</text>
+  <rect class="node error" x="485" y="390" width="180" height="58" rx="14"/>
+  <text x="575" y="426" text-anchor="middle" font-family="DejaVu Sans" font-size="18" font-weight="700" fill="#24445b">404 · Task missing</text>
+</svg>

@@ -18,10 +18,7 @@
 - Use **WebSockets** when both sides need to send live messages through one persistent connection.
 - Start with SSE for a simple request-and-stream chat; use WebSockets if the product needs richer two-way events.
 
-~~~text
-SSE: student ─question→ API ─answer chunks→ student
-WebSocket: student ⇄ API (messages both ways)
-~~~
+![Mind map: Live chat transport](assets/mindmaps/01-websockets-sse.svg)
 
 ---
 
@@ -33,12 +30,7 @@ WebSocket: student ⇄ API (messages both ways)
 
 **🛠 Build it** — Connect the tutor’s output stream to FastAPI’s StreamingResponse or SSE support. Send a clear start, content chunks, and end/error signal; stop work if the client disconnects.
 
-~~~text
-Tutor generates
-├── chunk 1 → send
-├── chunk 2 → send
-└── final chunk → finish
-~~~
+![Mind map: Tutor answer stream](assets/mindmaps/02-streaming-responses.svg)
 
 ---
 
@@ -50,11 +42,7 @@ Tutor generates
 
 **🛠 Build it** — Use async-compatible model and network clients. Set timeouts and limits, handle disconnects, and avoid blocking the event loop with slow synchronous work.
 
-~~~text
-Student A waits for tutor ─┐
-Student B receives chunks  ├─ server handles concurrent I/O
-Student C starts question ─┘
-~~~
+![Mind map: Many students waiting](assets/mindmaps/03-async-concurrency.svg)
 
 ---
 
@@ -66,12 +54,7 @@ Student C starts question ─┘
 
 **🛠 Build it** — Give each conversation a session ID, store ordered messages, and send only the relevant history to the tutor. Set retention and access rules because questions may contain sensitive information. Keep educational answers clearly separate from clinical diagnosis.
 
-~~~text
-Session
-├── student + access rules
-├── ordered messages
-└── context for next answer
-~~~
+![Mind map: Conversation context](assets/mindmaps/04-sessions-history.svg)
 
 ### 📚 Official references
 

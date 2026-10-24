@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="500" viewBox="0 0 1280 500" role="img" aria-labelledby="title desc">
+<title id="title">Grounded answer with RAG mind map</title>
+<desc id="desc">A central concept with colored branches and short supporting ideas.</desc>
+<rect width="100%" height="100%" rx="28" fill="#FBFCFE"/>
+<path d="M 545 250.0 C 515 250.0, 510 138.0, 480 138.0" fill="none" stroke="#4F78B7" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 300 138.0 C 286 138.0, 284 138.0, 270 138.0" fill="none" stroke="#4F78B7" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 545 250.0 C 515 250.0, 510 250.0, 480 250.0" fill="none" stroke="#B37B22" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 300 250.0 C 286 250.0, 284 250.0, 270 250.0" fill="none" stroke="#B37B22" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 545 250.0 C 515 250.0, 510 362.0, 480 362.0" fill="none" stroke="#B25569" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 300 362.0 C 286 362.0, 284 362.0, 270 362.0" fill="none" stroke="#B25569" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 735 250.0 C 765 250.0, 770 138.0, 800 138.0" fill="none" stroke="#3D887B" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 980 138.0 C 994 138.0, 996 138.0, 1010 138.0" fill="none" stroke="#3D887B" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 735 250.0 C 765 250.0, 770 250.0, 800 250.0" fill="none" stroke="#795DAA" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 980 250.0 C 994 250.0, 996 250.0, 1010 250.0" fill="none" stroke="#795DAA" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 735 250.0 C 765 250.0, 770 362.0, 800 362.0" fill="none" stroke="#4F78B7" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 980 362.0 C 994 362.0, 996 362.0, 1010 362.0" fill="none" stroke="#4F78B7" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<rect x="300" y="113.0" width="180" height="50" rx="18" fill="#E7F0FF" stroke="#4F78B7" stroke-width="2.5"/>
+<text x="390" y="144.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#243247">Ingest</text>
+<circle cx="56" cy="138.0" r="5" fill="#4F78B7"/>
+<text x="70" y="143.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Clean → chunk → embed</text>
+<rect x="300" y="225.0" width="180" height="50" rx="18" fill="#FFF1D6" stroke="#B37B22" stroke-width="2.5"/>
+<text x="390" y="256.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#243247">Question</text>
+<circle cx="56" cy="250.0" r="5" fill="#B37B22"/>
+<text x="70" y="255.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Embed and retrieve</text>
+<rect x="300" y="337.0" width="180" height="50" rx="18" fill="#FCE8EC" stroke="#B25569" stroke-width="2.5"/>
+<text x="390" y="368.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#243247">Sources</text>
+<circle cx="56" cy="362.0" r="5" fill="#B25569"/>
+<text x="70" y="367.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Return references</text>
+<rect x="800" y="113.0" width="180" height="50" rx="18" fill="#E3F3EF" stroke="#3D887B" stroke-width="2.5"/>
+<text x="890" y="144.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#243247">Store</text>
+<circle cx="1020" cy="138.0" r="5" fill="#3D887B"/>
+<text x="1034" y="143.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Chunks + metadata</text>
+<rect x="800" y="225.0" width="180" height="50" rx="18" fill="#F0E9FF" stroke="#795DAA" stroke-width="2.5"/>
+<text x="890" y="256.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#243247">Answer</text>
+<circle cx="1020" cy="250.0" r="5" fill="#795DAA"/>
+<text x="1034" y="255.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Give evidence to model</text>
+<rect x="800" y="337.0" width="180" height="50" rx="18" fill="#E7F0FF" stroke="#4F78B7" stroke-width="2.5"/>
+<text x="890" y="368.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#243247">No evidence</text>
+<circle cx="1020" cy="362.0" r="5" fill="#4F78B7"/>
+<text x="1034" y="367.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Say when evidence is missing</text>
+<ellipse cx="640" cy="250.0" rx="95" ry="58" fill="#263B5A"/>
+<text x="640" y="245.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#FFFFFF"><tspan x="640" dy="0">Grounded answer</tspan><tspan x="640" dy="21">with RAG</tspan></text>
+</svg>

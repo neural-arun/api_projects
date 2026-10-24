@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="500" viewBox="0 0 1280 500" role="img" aria-labelledby="title desc">
+<title id="title">Concurrent file work mind map</title>
+<desc id="desc">A central concept with colored branches and short supporting ideas.</desc>
+<rect width="100%" height="100%" rx="28" fill="#FBFCFE"/>
+<path d="M 545 250.0 C 515 250.0, 510 194.0, 480 194.0" fill="none" stroke="#B37B22" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 300 194.0 C 286 194.0, 284 194.0, 270 194.0" fill="none" stroke="#B37B22" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 545 250.0 C 515 250.0, 510 306.0, 480 306.0" fill="none" stroke="#B25569" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 300 306.0 C 286 306.0, 284 306.0, 270 306.0" fill="none" stroke="#B25569" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 735 250.0 C 765 250.0, 770 194.0, 800 194.0" fill="none" stroke="#795DAA" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 980 194.0 C 994 194.0, 996 194.0, 1010 194.0" fill="none" stroke="#795DAA" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 735 250.0 C 765 250.0, 770 306.0, 800 306.0" fill="none" stroke="#4F78B7" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 980 306.0 C 994 306.0, 996 306.0, 1010 306.0" fill="none" stroke="#4F78B7" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<rect x="300" y="169.0" width="180" height="50" rx="18" fill="#FFF1D6" stroke="#B37B22" stroke-width="2.5"/>
+<text x="390" y="200.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#243247">I/O wait</text>
+<circle cx="56" cy="194.0" r="5" fill="#B37B22"/>
+<text x="70" y="199.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Network or storage</text>
+<rect x="300" y="281.0" width="180" height="50" rx="18" fill="#FCE8EC" stroke="#B25569" stroke-width="2.5"/>
+<text x="390" y="312.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#243247">CPU work</text>
+<circle cx="56" cy="306.0" r="5" fill="#B25569"/>
+<text x="70" y="311.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Image conversion or OCR</text>
+<rect x="800" y="169.0" width="180" height="50" rx="18" fill="#F0E9FF" stroke="#795DAA" stroke-width="2.5"/>
+<text x="890" y="200.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#243247">Async event loop</text>
+<circle cx="1020" cy="194.0" r="5" fill="#795DAA"/>
+<text x="1034" y="199.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Serve other waiting work</text>
+<rect x="800" y="281.0" width="180" height="50" rx="18" fill="#E7F0FF" stroke="#4F78B7" stroke-width="2.5"/>
+<text x="890" y="312.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#243247">Heavy processing</text>
+<circle cx="1020" cy="306.0" r="5" fill="#4F78B7"/>
+<text x="1034" y="311.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Move to Build 7 worker</text>
+<ellipse cx="640" cy="250.0" rx="95" ry="58" fill="#263B5A"/>
+<text x="640" y="245.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" font-weight="700" fill="#FFFFFF"><tspan x="640" dy="0">Concurrent file</tspan><tspan x="640" dy="21">work</tspan></text>
+</svg>

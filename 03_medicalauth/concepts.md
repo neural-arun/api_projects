@@ -14,11 +14,7 @@
 
 **🛠 Build it** — Define student, instructor, and admin roles. For each protected operation, check the signed-in user's role on the server. Hiding a button in the user interface is not permission enforcement.
 
-~~~text
-Request
-├── authenticate → identify user
-└── authorize → check role + requested action
-~~~
+![Mind map: Access decision](assets/mindmaps/01-auth-vs-authorization.svg)
 
 ---
 
@@ -36,10 +32,7 @@ Request
 - Keep access tokens short-lived. Use a refresh token only to obtain a new access token; protect and rotate/revoke refresh tokens.
 - Put only necessary claims in a JWT. Verify its signature and expiry; do not put passwords, secrets, or sensitive student data in it.
 
-~~~text
-Register → store hash → login → access + refresh tokens
-Request + access token → verify → identify user → check permission
-~~~
+![Mind map: Sign-in and access tokens](assets/mindmaps/02-oauth2-jwt.svg)
 
 ---
 
@@ -52,10 +45,7 @@ Request + access token → verify → identify user → check permission
 
 **🛠 Build it** — Use a maintained password-hashing library and its recommended settings; never store or log plain passwords. The syllabus names bcrypt; review current algorithm guidance before choosing it for a new production system.
 
-~~~text
-Registration: password → slow hash → store hash
-Login: password + stored hash → verify → allow or reject
-~~~
+![Mind map: Password safety](assets/mindmaps/03-password-hashing.svg)
 
 ---
 
@@ -73,10 +63,7 @@ Login: password + stored hash → verify → allow or reject
 - Load signing keys and database credentials from environment configuration.
 - Keep local secrets out of Git; rotate exposed keys.
 
-~~~text
-User → verified identity → role check → allowed route
-                                  └────→ deny
-~~~
+![Mind map: Protect every request](assets/mindmaps/04-rbac-secrets.svg)
 
 ### 📚 Official references
 

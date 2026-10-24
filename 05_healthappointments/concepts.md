@@ -14,11 +14,7 @@
 
 **🛠 Build it** — Organize modules such as api/, services/, models/, schemas/, db/, and config/. Keep the route thin: validate the request, call a booking service, return the result.
 
-~~~text
-HTTP route → booking service → database
-                    ↓
-          slot and booking rules
-~~~
+![Mind map: Appointment layers](assets/mindmaps/01-service-layer.svg)
 
 ---
 
@@ -35,13 +31,7 @@ HTTP route → booking service → database
 - In one transaction, verify availability, create the appointment, and mark the slot booked.
 - If the operation fails, roll it back and return a conflict.
 
-~~~text
-Booking transaction
-├── slot still open?
-├── create appointment
-├── reserve slot
-└── commit together or rollback
-~~~
+![Mind map: Atomic slot booking](assets/mindmaps/02-transactions-scheduling.svg)
 
 ---
 
@@ -53,12 +43,7 @@ Booking transaction
 
 **🛠 Build it** — Keep database URLs and secrets in environment configuration. Log a request ID, operation, outcome, and timing; avoid logging clinical note content or access tokens.
 
-~~~text
-Request ID
-├── API log
-├── booking service log
-└── database/error log
-~~~
+![Mind map: Trace a booking request](assets/mindmaps/03-logging-request-ids.svg)
 
 ---
 
@@ -75,11 +60,7 @@ Request ID
 - Integration-test two booking attempts for the same slot; only one should succeed.
 - Keep test data separate from real patient information.
 
-~~~text
-Unit test → one rule
-TestClient → API behavior
-Integration test → API + database + transaction
-~~~
+![Mind map: Prevent double booking](assets/mindmaps/04-testing-bookings.svg)
 
 ### 📚 Official references
 

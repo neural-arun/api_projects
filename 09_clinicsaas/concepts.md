@@ -20,12 +20,7 @@
 - Never trust a tenant ID supplied by the browser without verifying membership.
 - Test that Clinic A cannot fetch Clinic B’s records.
 
-~~~text
-Signed-in user
-├── identify organization
-├── check role
-└── query only that tenant’s records
-~~~
+![Mind map: Tenant isolation](assets/mindmaps/01-tenant-isolation.svg)
 
 ---
 
@@ -37,12 +32,7 @@ Signed-in user
 
 **🛠 Build it** — Keep organization membership, roles, and tenant settings explicit. Add new tenant-specific fields deliberately; do not let configuration bypass privacy or access rules.
 
-~~~text
-Organization
-├── users + roles
-├── isolated records
-└── settings
-~~~
+![Mind map: Tenant permissions](assets/mindmaps/02-tenant-permissions.svg)
 
 ---
 
@@ -54,12 +44,7 @@ Organization
 
 **🛠 Build it** — Build the API image; use a Compose file for the API, database, networks, and persistent volumes. Keep secrets in environment configuration, not in the image.
 
-~~~text
-Compose application
-├── API container
-├── PostgreSQL container
-└── network + persistent volume
-~~~
+![Mind map: Local container stack](assets/mindmaps/03-docker-compose.svg)
 
 ---
 
@@ -76,10 +61,7 @@ Compose application
 - Use GitHub Actions to run checks on changes and deploy only from a controlled workflow.
 - Back up data and test tenant isolation before a release.
 
-~~~text
-GitHub change → CI checks → deployment
-Browser → HTTPS/Nginx → API → tenant-scoped database
-~~~
+![Mind map: Secure deployment](assets/mindmaps/04-deployment.svg)
 
 ### 📚 Official references
 

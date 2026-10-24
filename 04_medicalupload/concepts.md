@@ -19,13 +19,7 @@
 - Save the file in file/object storage and save its metadata separately.
 - Return a stable file ID, not a server filesystem path.
 
-~~~text
-Upload request
-├── file bytes → file storage
-└── metadata → database
-       ↓
-     file ID
-~~~
+![Mind map: Upload and metadata](assets/mindmaps/01-upload-metadata.svg)
 
 ---
 
@@ -37,13 +31,7 @@ Upload request
 
 **🛠 Build it** — Look up the file by ID, confirm access, then use FastAPI’s StreamingResponse/FileResponse with the correct content type and download name. Do not expose a raw local path.
 
-~~~text
-Client asks for file ID
-        ↓
-check record + access
-        ↓
-stream file chunks → client
-~~~
+![Mind map: File preview or download](assets/mindmaps/02-streaming-files.svg)
 
 ---
 
@@ -55,11 +43,7 @@ stream file chunks → client
 
 **🛠 Build it** — Use async endpoints with libraries that support await. Avoid blocking the event loop with slow synchronous work; move heavier processing to a worker in Build 7.
 
-~~~text
-Request A waits for storage ─┐
-Request B can progress       ├─ async event loop
-Request C waits for upload ──┘
-~~~
+![Mind map: Concurrent file work](assets/mindmaps/03-async-concurrency.svg)
 
 ---
 
@@ -71,10 +55,7 @@ Request C waits for upload ──┘
 
 **🛠 Build it** — Use FastAPI BackgroundTasks for small, short follow-up work. For durable, CPU-heavy, retryable processing, use a queue and worker as in Build 7.
 
-~~~text
-Upload saved → API responds
-                    └── small follow-up runs
-~~~
+![Mind map: After upload](assets/mindmaps/04-background-tasks.svg)
 
 ### 📚 Official references
 

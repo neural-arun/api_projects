@@ -14,12 +14,7 @@
 
 **🛠 Build it** — The API stores the document, creates a job with its document ID, and returns a job ID. A Celery worker receives the job, processes it, and records its status and result.
 
-~~~text
-FastAPI → queue/broker → Celery worker
-                              ├── extract
-                              ├── process
-                              └── save result
-~~~
+![Mind map: Document job pipeline](assets/mindmaps/01-queues-workers.svg)
 
 ---
 
@@ -36,12 +31,7 @@ FastAPI → queue/broker → Celery worker
 - Give cached values a lifetime and define how updates invalidate them.
 - Avoid caching sensitive document content without an explicit privacy and access plan.
 
-~~~text
-Redis
-├── broker → job message
-├── result store → job state
-└── cache → temporary fast lookup
-~~~
+![Mind map: Redis roles](assets/mindmaps/02-redis-roles.svg)
 
 ---
 
@@ -53,12 +43,7 @@ Redis
 
 **🛠 Build it** — Identify jobs with a stable document/job ID; make processing update that record rather than create duplicate outputs. Retry temporary failures with limits. Apply upload size and request-rate limits.
 
-~~~text
-Job attempt
-├── temporary failure → retry (bounded)
-├── success → save once
-└── repeated request → no duplicate result
-~~~
+![Mind map: Reliable document jobs](assets/mindmaps/03-retries-idempotency.svg)
 
 ### 📚 Official references
 

@@ -16,10 +16,7 @@
 - **Ingestion:** clean document → split into chunks → create embeddings → store chunks and metadata.
 - **Question:** embed query → retrieve relevant chunks → give those chunks to the model → return answer with source references.
 
-~~~text
-Documents → chunks → embeddings → vector store
-Question → search → relevant passages → grounded answer
-~~~
+![Mind map: Grounded answer with RAG](assets/mindmaps/01-rag-overview.svg)
 
 ---
 
@@ -36,12 +33,7 @@ Question → search → relevant passages → grounded answer
 - Retrieve a small set of relevant chunks and inspect whether they actually support the answer.
 - Filter by document permissions before showing any passage.
 
-~~~text
-Question
-├── embedding → search vectors
-├── retrieve top matching chunks
-└── pass chunks + question to model
-~~~
+![Mind map: Find useful passages](assets/mindmaps/02-chunking-embeddings.svg)
 
 ---
 
@@ -53,10 +45,7 @@ Question
 
 **🛠 Build it** — Keep modules for ingestion, embedding, vector search, and answer generation. Start as one application with clear boundaries; separate services only when deployment or workload needs require it.
 
-~~~text
-Ingest: upload → chunk → embed → store
-Query: question → retrieve → generate → cite
-~~~
+![Mind map: Two RAG workflows](assets/mindmaps/03-pipeline-services.svg)
 
 ---
 
@@ -68,10 +57,7 @@ Query: question → retrieve → generate → cite
 
 **🛠 Build it** — Stream the response when it improves the experience. Keep model API keys on the server, add per-user limits, and record which document chunks supported each answer. If retrieval finds no relevant evidence, say so rather than inventing a citation.
 
-~~~text
-Question → retrieve evidence → generate answer
-                         └── stream text + source references
-~~~
+![Mind map: Safe streamed answer](assets/mindmaps/04-streaming-quality.svg)
 
 ### 📚 Further reading
 

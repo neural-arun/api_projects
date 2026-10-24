@@ -15,12 +15,7 @@
 
 **🛠 Build it** — Create patient and note tables. Use a patient ID on each note, then query by patient, visit date, or search text.
 
-~~~text
-Patient table 1 ───── many Note rows
-patient_id                  patient_id
-name                        visit_date
-                            note_text
-~~~
+![Mind map: Patient note database](assets/mindmaps/01-patient-database.svg)
 
 ---
 
@@ -37,14 +32,7 @@ name                        visit_date
 - Use a session to query or change rows; commit successful changes and close the session after the request.
 - Try SQLModel as a concise way to define models. Keep request/response models distinct when the API needs different fields.
 
-~~~text
-API operation
-    ↓
-database session
-    ├── query patient / notes
-    ├── add or edit note
-    └── commit or rollback
-~~~
+![Mind map: Database session](assets/mindmaps/02-database-session.svg)
 
 ---
 
@@ -62,13 +50,7 @@ database session
 - Search notes through the patient relationship.
 - Use a transaction when one user action changes multiple related rows.
 
-~~~text
-Create note
-├── verify patient
-├── save visit + note
-└── commit together
-    └── on failure → rollback
-~~~
+![Mind map: Reliable note save](assets/mindmaps/03-note-transaction.svg)
 
 ---
 
@@ -86,13 +68,7 @@ Create note
 - Create an Alembic migration when the schema changes; practice upgrade and rollback.
 - Keep clinical content out of routine logs.
 
-~~~text
-api/       routes and HTTP
-models/    database tables
-schemas/   API input/output
-db/        engine and sessions
-migrations/ schema history
-~~~
+![Mind map: Clinical Notes modules](assets/mindmaps/04-project-structure.svg)
 
 ### 📚 Official references
 

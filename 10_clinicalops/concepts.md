@@ -14,11 +14,7 @@
 
 **🛠 Build it** — Model the workflow as explicit states, such as received, processing, needs review, approved, and completed. Start with clear modules in one app; add events or queues where slow work or independent scaling requires them.
 
-~~~text
-Intake → AI processing → human review → authorized action
-             ↓                  ↓
-         status + audit trail + outcome
-~~~
+![Mind map: Clinical workflow](assets/mindmaps/01-workflow-architecture.svg)
 
 ---
 
@@ -36,12 +32,7 @@ Intake → AI processing → human review → authorized action
 - Record who reviewed the output and what action followed.
 - Handle timeouts and failures without losing the intake record.
 
-~~~text
-Intake → AI proposal → review queue
-                         ├── approve → action
-                         ├── edit → action
-                         └── reject → record outcome
-~~~
+![Mind map: Human-reviewed AI](assets/mindmaps/02-agents-human-review.svg)
 
 ---
 
@@ -56,10 +47,7 @@ Intake → AI proposal → review queue
 
 **🛠 Build it** — Track request duration, queue depth, processing failures, and review wait time. Prometheus stores and queries metrics; Grafana displays dashboards and alerts. Use request IDs to connect logs and traces; keep protected health information out of metric labels and routine logs.
 
-~~~text
-Request ID → trace + related logs
-Prometheus → metrics → Grafana dashboard/alert
-~~~
+![Mind map: System health](assets/mindmaps/03-observability.svg)
 
 ---
 
@@ -71,11 +59,7 @@ Prometheus → metrics → Grafana dashboard/alert
 
 **🛠 Build it** — Measure slow steps first. Move long AI or document jobs to workers; keep APIs stateless where possible; use queues for work that can wait. Define alerts and a safe fallback when AI or downstream services fail.
 
-~~~text
-Measure → find bottleneck → scale that component
-                 ↓
-             safe fallback
-~~~
+![Mind map: Scale by evidence](assets/mindmaps/04-scaling-tradeoffs.svg)
 
 ### 📚 Official references
 

@@ -13,6 +13,7 @@
 <p align="center">
   <a href="projects.md"><img src="https://img.shields.io/badge/EXPLORE-PROJECT_BRIEFS-009688?style=for-the-badge" alt="Explore project briefs"></a>
   <a href="syllabus.md"><img src="https://img.shields.io/badge/OPEN-LEARNING_SYLLABUS-2563EB?style=for-the-badge" alt="Open learning syllabus"></a>
+  <a href="all-concepts.pdf"><img src="https://img.shields.io/badge/READ-ALL_CONCEPT_NOTES-7C3AED?style=for-the-badge" alt="Read all concept notes as a PDF"></a>
   <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FASTAPI-OFFICIAL_DOCS-38BDF8?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI official documentation"></a>
 </p>
 
@@ -37,7 +38,9 @@ Ten progressive FastAPI projects turn each new skill into a useful healthcare or
 | 9 | Multi-Tenant Healthcare SaaS | Tenant isolation, Docker, CI/CD | [Concept notes](09_clinicsaas/concepts.md) |
 | 10 | AI Clinical Operations Platform | AI workflows, human review, observability | [Concept notes](10_clinicalops/concepts.md) |
 
-Each guide explains its project concepts and includes embedded SVG mindmaps beside the notes.
+Each guide explains concepts in short bullets, adds beginner pitfalls and practical insights, then connects each topic to the project and its build. The guides include visual mindmaps throughout.
+
+Read the [combined 58-page concepts PDF](all-concepts.pdf) or browse the [combined Markdown source](all-concepts.md). The roadmap table links to each project’s individual guide.
 
 ## Getting started
 

@@ -27,16 +27,16 @@ Ten progressive FastAPI projects turn each new skill into a useful healthcare or
 
 | # | Project | Core skills | Notes |
 |---|---|---|---|
-| 1 | Patient Task Management API | FastAPI, Pydantic, CRUD | [Concept notes](01_patienttasks/concepts.md) |
-| 2 | Clinical Notes Backend | PostgreSQL, SQLAlchemy, migrations | [Concept notes](02_medicalnotes/concepts.md) |
-| 3 | Education Auth Platform | JWT, OAuth2, role-based access | [Concept notes](03_medicalauth/concepts.md) |
-| 4 | Medical Content Upload API | Uploads, streaming, async work | [Concept notes](04_medicalupload/concepts.md) |
-| 5 | Healthcare Appointment Backend | Services, transactions, testing | [Concept notes](05_healthappointments/concepts.md) |
-| 6 | Medical Tutor Chat Backend | Streaming, SSE, WebSockets | [Concept notes](06_medicaltutor/concepts.md) |
-| 7 | Medical Document Processing Pipeline | Celery, Redis, background workers | [Concept notes](07_documentpipeline/concepts.md) |
-| 8 | Medical Knowledge RAG Backend | Chunking, embeddings, retrieval | [Concept notes](08_medicalrag/concepts.md) |
-| 9 | Multi-Tenant Healthcare SaaS | Tenant isolation, Docker, CI/CD | [Concept notes](09_clinicsaas/concepts.md) |
-| 10 | AI Clinical Operations Platform | AI workflows, human review, observability | [Concept notes](10_clinicalops/concepts.md) |
+| 1 | Patient Task Management API | FastAPI, Pydantic, CRUD | [FastAPI CRUD and validation](01_patienttasks/fastapi-crud-and-validation.md) |
+| 2 | Clinical Notes Backend | PostgreSQL, SQLAlchemy, migrations | [PostgreSQL, SQLAlchemy, and migrations](02_medicalnotes/postgresql-sqlalchemy-and-migrations.md) |
+| 3 | Education Auth Platform | JWT, OAuth2, role-based access | [JWT authentication and RBAC](03_medicalauth/jwt-authentication-and-rbac.md) |
+| 4 | Medical Content Upload API | Uploads, streaming, async work | [Async file uploads and background tasks](04_medicalupload/async-file-uploads-and-background-tasks.md) |
+| 5 | Healthcare Appointment Backend | Services, transactions, testing | [Transactions and appointment scheduling](05_healthappointments/transactions-and-appointment-scheduling.md) |
+| 6 | Medical Tutor Chat Backend | Streaming, SSE, WebSockets | [WebSockets, SSE, and streaming chat](06_medicaltutor/websockets-sse-and-streaming-chat.md) |
+| 7 | Medical Document Processing Pipeline | Celery, Redis, background workers | [Celery, Redis, and document pipelines](07_documentpipeline/celery-redis-document-pipelines.md) |
+| 8 | Medical Knowledge RAG Backend | Chunking, embeddings, retrieval | [RAG, chunking, embeddings, and retrieval](08_medicalrag/rag-chunking-embeddings-and-retrieval.md) |
+| 9 | Multi-Tenant Healthcare SaaS | Tenant isolation, Docker, CI/CD | [Multi-tenant SaaS and deployment](09_clinicsaas/multi-tenant-saas-and-deployment.md) |
+| 10 | AI Clinical Operations Platform | AI workflows, human review, observability | [AI workflows and production observability](10_clinicalops/ai-workflows-and-production-observability.md) |
 
 Each guide explains concepts in short bullets, adds beginner pitfalls and practical insights, then connects each topic to the project and its build. The guides include visual mindmaps throughout.
 

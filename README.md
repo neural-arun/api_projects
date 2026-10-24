@@ -25,18 +25,20 @@ Ten progressive FastAPI projects turn each new skill into a useful healthcare or
 
 ## The roadmap
 
-| # | Project | Core skills | Notes |
-|---|---|---|---|
-| 1 | Patient Task Management API | FastAPI, Pydantic, CRUD | [FastAPI CRUD and validation](01_patienttasks/fastapi-crud-and-validation.md) |
-| 2 | Clinical Notes Backend | PostgreSQL, SQLAlchemy, migrations | [PostgreSQL, SQLAlchemy, and migrations](02_medicalnotes/postgresql-sqlalchemy-and-migrations.md) |
-| 3 | Education Auth Platform | JWT, OAuth2, role-based access | [JWT authentication and RBAC](03_medicalauth/jwt-authentication-and-rbac.md) |
-| 4 | Medical Content Upload API | Uploads, streaming, async work | [Async file uploads and background tasks](04_medicalupload/async-file-uploads-and-background-tasks.md) |
-| 5 | Healthcare Appointment Backend | Services, transactions, testing | [Transactions and appointment scheduling](05_healthappointments/transactions-and-appointment-scheduling.md) |
-| 6 | Medical Tutor Chat Backend | Streaming, SSE, WebSockets | [WebSockets, SSE, and streaming chat](06_medicaltutor/websockets-sse-and-streaming-chat.md) |
-| 7 | Medical Document Processing Pipeline | Celery, Redis, background workers | [Celery, Redis, and document pipelines](07_documentpipeline/celery-redis-document-pipelines.md) |
-| 8 | Medical Knowledge RAG Backend | Chunking, embeddings, retrieval | [RAG, chunking, embeddings, and retrieval](08_medicalrag/rag-chunking-embeddings-and-retrieval.md) |
-| 9 | Multi-Tenant Healthcare SaaS | Tenant isolation, Docker, CI/CD | [Multi-tenant SaaS and deployment](09_clinicsaas/multi-tenant-saas-and-deployment.md) |
-| 10 | AI Clinical Operations Platform | AI workflows, human review, observability | [AI workflows and production observability](10_clinicalops/ai-workflows-and-production-observability.md) |
+**Progress:** Build 1 is complete. It includes a FastAPI task API and a simple browser frontend for creating, viewing, editing, completing, and deleting tasks for any patient ID.
+
+| # | Project | Status | Core skills | Notes |
+|---|---|---|---|---|
+| 1 | Patient Task Management API | ✅ Complete | FastAPI, Pydantic, CRUD | [FastAPI CRUD and validation](01_patienttasks/fastapi-crud-and-validation.md) |
+| 2 | Clinical Notes Backend | ⬜ Planned | PostgreSQL, SQLAlchemy, migrations | [PostgreSQL, SQLAlchemy, and migrations](02_medicalnotes/postgresql-sqlalchemy-and-migrations.md) |
+| 3 | Education Auth Platform | ⬜ Planned | JWT, OAuth2, role-based access | [JWT authentication and RBAC](03_medicalauth/jwt-authentication-and-rbac.md) |
+| 4 | Medical Content Upload API | ⬜ Planned | Uploads, streaming, async work | [Async file uploads and background tasks](04_medicalupload/async-file-uploads-and-background-tasks.md) |
+| 5 | Healthcare Appointment Backend | ⬜ Planned | Services, transactions, testing | [Transactions and appointment scheduling](05_healthappointments/transactions-and-appointment-scheduling.md) |
+| 6 | Medical Tutor Chat Backend | ⬜ Planned | Streaming, SSE, WebSockets | [WebSockets, SSE, and streaming chat](06_medicaltutor/websockets-sse-and-streaming-chat.md) |
+| 7 | Medical Document Processing Pipeline | ⬜ Planned | Celery, Redis, background workers | [Celery, Redis, and document pipelines](07_documentpipeline/celery-redis-document-pipelines.md) |
+| 8 | Medical Knowledge RAG Backend | ⬜ Planned | Chunking, embeddings, retrieval | [RAG, chunking, embeddings, and retrieval](08_medicalrag/rag-chunking-embeddings-and-retrieval.md) |
+| 9 | Multi-Tenant Healthcare SaaS | ⬜ Planned | Tenant isolation, Docker, CI/CD | [Multi-tenant SaaS and deployment](09_clinicsaas/multi-tenant-saas-and-deployment.md) |
+| 10 | AI Clinical Operations Platform | ⬜ Planned | AI workflows, human review, observability | [AI workflows and production observability](10_clinicalops/ai-workflows-and-production-observability.md) |
 
 Each guide explains concepts in short bullets, adds beginner pitfalls and practical insights, then connects each topic to the project and its build. The guides include visual mindmaps throughout.
 
@@ -44,6 +46,6 @@ Read the [combined 58-page concepts PDF](all-concepts.pdf) or browse the [combin
 
 ## Getting started
 
-Start with **Build 1** and follow the sequence; each project builds on the last. Use [`projects.md`](projects.md) for project briefs and [`syllabus.md`](syllabus.md) for learning topics and progress checklists.
+Build 1 is complete; continue with **Build 2**. Use [`projects.md`](projects.md) for project briefs and [`syllabus.md`](syllabus.md) for learning topics and progress checklists.
 
 **North star:** thoughtful, reliable AI systems that support healthcare and education.

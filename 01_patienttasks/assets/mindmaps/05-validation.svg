@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="500" viewBox="0 0 1280 500" role="img" aria-labelledby="title desc">
+<title id="title">Validation mind map</title>
+<desc id="desc">A centered mind map with colored branches and short supporting ideas.</desc>
+<rect width="100%" height="100%" rx="28" fill="#FBFCFE"/>
+<path d="M 545 250.0 C 515 250.0, 510 194.0, 480 194.0" fill="none" stroke="#B25569" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 300 194.0 C 286 194.0, 284 156.0, 270 156.0" fill="none" stroke="#B25569" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 300 194.0 C 286 194.0, 284 194.0, 270 194.0" fill="none" stroke="#B25569" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 300 194.0 C 286 194.0, 284 232.0, 270 232.0" fill="none" stroke="#B25569" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 545 250.0 C 515 250.0, 510 330.0, 480 330.0" fill="none" stroke="#3D887B" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 300 330.0 C 286 330.0, 284 330.0, 270 330.0" fill="none" stroke="#3D887B" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 735 250.0 C 765 250.0, 770 189.0, 800 189.0" fill="none" stroke="#4F78B7" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 980 189.0 C 994 189.0, 996 170.0, 1010 170.0" fill="none" stroke="#4F78B7" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 980 189.0 C 994 189.0, 996 208.0, 1010 208.0" fill="none" stroke="#4F78B7" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 735 250.0 C 765 250.0, 770 311.0, 800 311.0" fill="none" stroke="#B37B22" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 980 311.0 C 994 311.0, 996 292.0, 1010 292.0" fill="none" stroke="#B37B22" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 980 311.0 C 994 311.0, 996 330.0, 1010 330.0" fill="none" stroke="#B37B22" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<rect x="300" y="169.0" width="180" height="50" rx="18" fill="#FCE8EC" stroke="#B25569" stroke-width="2.5"/>
+<text x="390" y="200.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#243247">Data shape</text>
+<circle cx="56" cy="156.0" r="5" fill="#B25569"/>
+<text x="70" y="161.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Required fields</text>
+<circle cx="56" cy="194.0" r="5" fill="#B25569"/>
+<text x="70" y="199.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Correct types</text>
+<circle cx="56" cy="232.0" r="5" fill="#B25569"/>
+<text x="70" y="237.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Date and time</text>
+<rect x="300" y="305.0" width="180" height="50" rx="18" fill="#E3F3EF" stroke="#3D887B" stroke-width="2.5"/>
+<text x="390" y="336.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#243247">Care plan</text>
+<circle cx="56" cy="330.0" r="5" fill="#3D887B"/>
+<text x="70" y="335.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Trusted reminder details</text>
+<rect x="800" y="164.0" width="180" height="50" rx="18" fill="#E7F0FF" stroke="#4F78B7" stroke-width="2.5"/>
+<text x="890" y="195.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#243247">App rules</text>
+<circle cx="1020" cy="170.0" r="5" fill="#4F78B7"/>
+<text x="1034" y="175.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Nonblank title</text>
+<circle cx="1020" cy="208.0" r="5" fill="#4F78B7"/>
+<text x="1034" y="213.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Valid task state</text>
+<rect x="800" y="286.0" width="180" height="50" rx="18" fill="#FFF1D6" stroke="#B37B22" stroke-width="2.5"/>
+<text x="890" y="317.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#243247">Outcome</text>
+<circle cx="1020" cy="292.0" r="5" fill="#B37B22"/>
+<text x="1034" y="297.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Save</text>
+<circle cx="1020" cy="330.0" r="5" fill="#B37B22"/>
+<text x="1034" y="335.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Or return 422</text>
+<ellipse cx="640" cy="250.0" rx="95" ry="58" fill="#263B5A"/>
+<text x="640" y="257.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#FFFFFF">Validation</text>
+</svg>

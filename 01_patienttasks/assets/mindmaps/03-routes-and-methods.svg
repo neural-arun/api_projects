@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="500" viewBox="0 0 1280 500" role="img" aria-labelledby="title desc">
+<title id="title">Routes mind map</title>
+<desc id="desc">A centered mind map with colored branches and short supporting ideas.</desc>
+<rect width="100%" height="100%" rx="28" fill="#FBFCFE"/>
+<path d="M 545 250.0 C 515 250.0, 510 194.0, 480 194.0" fill="none" stroke="#B37B22" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 300 194.0 C 286 194.0, 284 118.0, 270 118.0" fill="none" stroke="#B37B22" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 300 194.0 C 286 194.0, 284 156.0, 270 156.0" fill="none" stroke="#B37B22" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 300 194.0 C 286 194.0, 284 194.0, 270 194.0" fill="none" stroke="#B37B22" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 300 194.0 C 286 194.0, 284 232.0, 270 232.0" fill="none" stroke="#B37B22" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 300 194.0 C 286 194.0, 284 270.0, 270 270.0" fill="none" stroke="#B37B22" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 545 250.0 C 515 250.0, 510 368.0, 480 368.0" fill="none" stroke="#B25569" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 300 368.0 C 286 368.0, 284 368.0, 270 368.0" fill="none" stroke="#B25569" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 735 250.0 C 765 250.0, 770 250.0, 800 250.0" fill="none" stroke="#795DAA" stroke-width="4" stroke-linecap="round" opacity="0.78"/>
+<path d="M 980 250.0 C 994 250.0, 996 231.0, 1010 231.0" fill="none" stroke="#795DAA" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<path d="M 980 250.0 C 994 250.0, 996 269.0, 1010 269.0" fill="none" stroke="#795DAA" stroke-width="2.5" stroke-linecap="round" opacity="0.52"/>
+<rect x="300" y="169.0" width="180" height="50" rx="18" fill="#FFF1D6" stroke="#B37B22" stroke-width="2.5"/>
+<text x="390" y="200.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#243247">Method</text>
+<circle cx="56" cy="118.0" r="5" fill="#B37B22"/>
+<text x="70" y="123.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">GET → Read</text>
+<circle cx="56" cy="156.0" r="5" fill="#B37B22"/>
+<text x="70" y="161.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">POST → Create</text>
+<circle cx="56" cy="194.0" r="5" fill="#B37B22"/>
+<text x="70" y="199.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">PUT → Replace</text>
+<circle cx="56" cy="232.0" r="5" fill="#B37B22"/>
+<text x="70" y="237.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">PATCH → Partial update</text>
+<circle cx="56" cy="270.0" r="5" fill="#B37B22"/>
+<text x="70" y="275.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">DELETE → Remove</text>
+<rect x="300" y="343.0" width="180" height="50" rx="18" fill="#FCE8EC" stroke="#B25569" stroke-width="2.5"/>
+<text x="390" y="374.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#243247">Query</text>
+<circle cx="56" cy="368.0" r="5" fill="#B25569"/>
+<text x="70" y="373.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Filter task list</text>
+<rect x="800" y="225.0" width="180" height="50" rx="18" fill="#F0E9FF" stroke="#795DAA" stroke-width="2.5"/>
+<text x="890" y="256.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#243247">Path</text>
+<circle cx="1020" cy="231.0" r="5" fill="#795DAA"/>
+<text x="1034" y="236.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Patient ID</text>
+<circle cx="1020" cy="269.0" r="5" fill="#795DAA"/>
+<text x="1034" y="274.0" text-anchor="start" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15.5" fill="#243247">Task ID</text>
+<ellipse cx="640" cy="250.0" rx="95" ry="58" fill="#263B5A"/>
+<text x="640" y="257.0" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#FFFFFF">Routes</text>
+</svg>

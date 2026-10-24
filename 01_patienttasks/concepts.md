@@ -33,10 +33,7 @@ Start the development server; it reloads after code changes. Open /docs to explo
 uv run fastapi dev main.py
 ~~~
 
-~~~text
-Patient app ─HTTP→ Uvicorn ─ASGI→ FastAPI → task operation
-Patient app ←HTTP─ Uvicorn ←ASGI─ FastAPI ← result ─ task operation
-~~~
+![Mind map: Patient Tasks API](assets/mindmaps/01-api-request-flow.svg)
 
 ---
 
@@ -64,10 +61,7 @@ Patient app ←HTTP─ Uvicorn ←ASGI─ FastAPI ← result ─ task operation
 | JSON body | Carries task fields | Title and due time |
 | Response | Reports result | Status + saved task |
 
-~~~text
-Request → API → Response
-action + target + data   outcome + result/error
-~~~
+![Mind map: HTTP exchange](assets/mindmaps/02-http-exchange.svg)
 
 ---
 
@@ -90,13 +84,7 @@ action + target + data   outcome + result/error
 
 Examples: GET /patients/42/tasks?due=today lists today’s tasks; PATCH /tasks/81 marks task 81 complete.
 
-~~~text
-Route = method + path
-├── GET + task list → read
-├── POST + task list → create
-├── PATCH + task ID → partial update
-└── DELETE + task ID → remove
-~~~
+![Mind map: Routes](assets/mindmaps/03-routes-and-methods.svg)
 
 ---
 
@@ -118,12 +106,7 @@ Route = method + path
 
 A field with a default can be omitted. A field that allows null can also be sent as JSON null. A PATCH model makes fields optional so the app can change just one field.
 
-~~~text
-JSON → Pydantic model
-├── checks fields and types
-├── applies defaults
-└── gives task operation structured data
-~~~
+![Mind map: Task data](assets/mindmaps/04-task-data.svg)
 
 ---
 
@@ -136,12 +119,7 @@ JSON → Pydantic model
 
 **🛠 Build it** — Let FastAPI/Pydantic catch missing or wrongly typed fields. Add simple task rules before changing data. Invalid request data returns 422.
 
-~~~text
-Before saving
-├── right fields and types?
-├── task rules satisfied?
-└── yes → continue · no → explain error
-~~~
+![Mind map: Validation](assets/mindmaps/05-validation.svg)
 
 ---
 
@@ -154,10 +132,7 @@ Before saving
 
 **🛠 Build it** — Connect each operation to a route. Use an in-memory list for this first exercise; it clears when the server restarts. Database persistence is covered in Build 2.
 
-~~~text
-POST → Create      GET → Read
-PUT/PATCH → Update DELETE → Remove
-~~~
+![Mind map: CRUD tasks](assets/mindmaps/06-crud.svg)
 
 ---
 
@@ -178,9 +153,7 @@ PUT/PATCH → Update DELETE → Remove
 | 404 | Task not found |
 | 422 | Request data invalid |
 
-~~~text
-Response = status code + allowed task fields
-~~~
+![Mind map: API response](assets/mindmaps/07-responses.svg)
 
 ---
 
@@ -193,11 +166,7 @@ Response = status code + allowed task fields
 
 **🛠 Build it** — Check for the task before updating or deleting. If it is missing, raise HTTPException with status 404 and a safe message. FastAPI already returns 422 for invalid request data; keep unexpected error details in server logs.
 
-~~~text
-Update task
-├── found → update and return
-└── missing → HTTPException 404
-~~~
+![Mind map: HTTPException](assets/mindmaps/08-errors.svg)
 
 ---
 
@@ -212,9 +181,22 @@ When a patient marks a task complete:
 5. The response model shapes the result; the status code reports success.
 6. If the task is missing, HTTPException returns 404.
 
-~~~text
-Uvicorn → ASGI → FastAPI route → Pydantic/validation
-        → CRUD → response model + status → patient app
+~~~mermaid
+---
+config:
+  theme: neutral
+  look: classic
+---
+flowchart LR
+  A[Patient app] --> B[Uvicorn]
+  B -->|ASGI| C[FastAPI route]
+  C --> D[JSON and Pydantic]
+  D --> E[Validation]
+  E -->|valid| F[CRUD update]
+  F --> G[Response model and status]
+  G --> H[Patient app]
+  E -->|invalid| I[422 error]
+  C -->|task missing| J[HTTPException 404]
 ~~~
 
 ### 📚 Official references

@@ -1,16 +1,19 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/FASTAPI-LEARNING_ROADMAP-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI learning roadmap">
+  <img src="https://img.shields.io/badge/FASTAPI-ROADMAP-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI roadmap">
   <img src="https://img.shields.io/badge/10-PROGRESSIVE_BUILDS-2563EB?style=for-the-badge" alt="10 progressive builds">
-  <img src="https://img.shields.io/badge/FOCUS-HEALTHCARE_%2B_EDUCATION-7C3AED?style=for-the-badge" alt="Healthcare and education focus">
+  <img src="https://img.shields.io/badge/HEALTHCARE_%2B_EDUCATION-AI_SYSTEMS-7C3AED?style=for-the-badge" alt="Healthcare, education, and AI systems">
 </p>
 
-<h1 align="center">Healthcare × Education × AI</h1>
+<p align="center">
+  <img src="assets/readme-hero.svg" alt="FastAPI roadmap: ten builds for healthcare, education, and AI, from backend fundamentals to human-reviewed workflows." width="100%">
+</p>
 
-<p align="center"><strong>Build from backend fundamentals to thoughtful AI systems for care and learning.</strong></p>
+<p align="center"><strong>Build practical systems for care and learning, one layer at a time.</strong></p>
 
 <p align="center">
-  <a href="projects.md">PROJECT BRIEFS</a> &nbsp;·&nbsp;
-  <a href="syllabus.md">LEARNING SYLLABUS</a>
+  <a href="projects.md"><img src="https://img.shields.io/badge/EXPLORE-PROJECT_BRIEFS-009688?style=for-the-badge" alt="Explore project briefs"></a>
+  <a href="syllabus.md"><img src="https://img.shields.io/badge/OPEN-LEARNING_SYLLABUS-2563EB?style=for-the-badge" alt="Open learning syllabus"></a>
+  <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FASTAPI-OFFICIAL_DOCS-38BDF8?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI official documentation"></a>
 </p>
 
 ---
